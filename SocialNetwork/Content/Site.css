@@ -28,5 +28,8 @@ textarea {
 }
 .notification {
     position: absolute;
-    top: 11px;
+    top: 12px;
+}
+.content {
+    margin-top:56px;
 }
