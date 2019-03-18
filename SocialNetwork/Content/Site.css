@@ -1,5 +1,4 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
 }
 
@@ -21,4 +20,13 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+.sidebar {
+    height: calc(100vh - 54px); /* 54 pixel is the height of .navbar */
+    margin-top:56px; /* pushing down the sidebar*/
+    padding-left:0px;
+}
+.notification {
+    position: absolute;
+    top: 11px;
 }

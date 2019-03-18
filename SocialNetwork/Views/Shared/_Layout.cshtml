@@ -6,36 +6,57 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    @* Top Navbar *@
+    <nav class="navbar fixed-top navbar-dark bg-dark text-white-50">
+        <span class="navbar-brand mb-0 h1 text-white-50" href="#">SocialNetwork</span>
+        <ul class="nav">
+            <li class="nav-item nav-link">
+                <a class="" href="#"><i class="far fa-bell text-white-50"></i></a>
+                <span class="badge badge-pill badge-danger notification">3</span>
+            </li>
+            <li class="nav-item nav-link">
+                <a href="#"><i class="far fa-envelope text-white-50"></i></a>
+                <span class="badge badge-pill badge-danger notification">1</span>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#"><i class="far fa-user text-white-50"></i></a></li>
+        </ul>
+    </nav>
+    @* SideBar *@
+    <div class="container row">
+        <div class="col-2 bg-dark sidebar position-fixed">
+            <ul class="list-group list-group-flush text-white-50">
+                <li class="list-group-item bg-dark d-flex justify-content-between align-items-center">
+                    <div>
+                        <i class="fas fa-home text-white-50"></i>
+                        @Html.ActionLink("Home", "Index", "Home", new { @class = "text-white-50" })
+                    </div>
+                    <span class="badge badge-warning badge-pill">NEW</span>
+                </li>
+                <li class="list-group-item bg-dark">
+                    <i class="fas fa-tachometer-alt text-white-50"></i>
+                    @Html.ActionLink("Dashboard", "About", "Home", new { @class = "text-white-50" })
+                </li>
+            </ul>
+            @* Footer *@
+            <footer class="">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-dark d-flex justify-content-between align-items-center">
+                        <i class="far fa-bell text-white-50"></i>
+                        <i class="far fa-envelope text-white-50"></i>
+                        <i class="far fa-user text-white-50"></i>
+                    </li>
                 </ul>
-            </div>
+            </footer>
+        </div>
+        <div class="container col offset-3">
+            @RenderBody()
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
