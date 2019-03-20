@@ -21,6 +21,5 @@ namespace SocialNetwork.Models
         public string ratings { get; set; }
         public float avgRating { get; set; }
         public string books { get; set; }
-
     }
 }
