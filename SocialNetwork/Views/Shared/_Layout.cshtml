@@ -17,19 +17,27 @@
             </button>
             SocialNetwork
         </span>
-        
-        <ul class="nav">
-            <li class="nav-item nav-link">
-                <a class="" href="#"><i class="far fa-bell text-white-50"></i></a>
-                <span class="badge badge-pill badge-danger notification">3</span>
-            </li>
-            <li class="nav-item nav-link">
-                <a href="#"><i class="far fa-envelope text-white-50"></i></a>
-                <span class="badge badge-pill badge-danger notification">1</span>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#"><i class="far fa-user text-white-50"></i></a></li>
-        </ul>
+        @if (User.Identity.IsAuthenticated) {
+			<ul class="nav">
+				<li class="nav-item nav-link">
+					<a class="" href="#"><i class="far fa-bell text-white-50"></i></a>
+					<span class="badge badge-pill badge-danger notification">3</span>
+				</li>
+				<li class="nav-item nav-link">
+					<a href="#"><i class="far fa-envelope text-white-50"></i></a>
+					<span class="badge badge-pill badge-danger notification">1</span>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#"><i class="far fa-user text-white-50"></i></a></li>
+			</ul>
+		}
+		else
+		{
+			<ul class="nav">
+				<li class="nav-item">@Html.ActionLink("Register", "UserRegister", "Login", null , new { @class = "nav-link text-white-50" })</li>
+			</ul>
+		}
     </nav>
+		
     @* SideBar *@
     <div class="container row">
         <div class="col-2 bg-dark sidebar position-fixed collapse navbar-collapse" id="RightNavC">
@@ -37,23 +45,24 @@
                 <li class="list-group-item bg-dark d-flex justify-content-between align-items-center">
                     <div>
                         <i class="fas fa-home text-white-50"></i>
-                        @Html.ActionLink("Home", "Index", "Home", new { @class = "text-white-50" })
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "text-white-50" })
                     </div>
                     <span class="badge badge-warning badge-pill">NEW</span>
                 </li>
                 <li class="list-group-item bg-dark">
                     <i class="fas fa-tachometer-alt text-white-50"></i>
-                    @Html.ActionLink("Dashboard", "About", "Home", new { @class = "text-white-50" })
+                    @Html.ActionLink("Dashboard", "About", "Home", null, new { @class = "text-white-50" })
                 </li>
             </ul>
             @* Footer *@
             <footer class="fixed-bottom footer">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item bg-dark d-flex justify-content-between align-items-center">
-                        <i class="far fa-bell text-white-50"></i>
-                        <i class="far fa-envelope text-white-50"></i>
-                        <i class="far fa-user text-white-50"></i>
-                    </li>
+					<li class="list-group-item bg-dark d-flex justify-content-between align-items-center">
+						<i class="far fa-bell text-white-50"></i>
+						<i class="far fa-envelope text-white-50"></i>
+						<i class="far fa-user text-white-50"></i>
+						<i class="fas fa-sign-out-alt text-white-50"></i>
+					</li>
                 </ul>
             </footer>
         </div>
