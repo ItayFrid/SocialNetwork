@@ -93,14 +93,18 @@ namespace SocialNetwork.Controllers
                 if (!userExists(user.email))     //Adding user to database
                 {
                     user.password = hashedPassword;
-                    dal.users.Add(user);
-					if (user.role.Equals("Student"))
-						//Role: Student
-						dal.students.Add(createStudent(user));
-					else
-						//Role: Teacher
-						dal.teachers.Add(createTeacher(user));
-                    dal.SaveChanges();
+                    if (user.role.Equals("Student")) {
+                        //Role: Student
+                        Student student = createStudent(user);
+						dal.students.Add(student);
+                        dal.SaveChanges();
+                    }
+                    else {
+                        //Role: Teacher
+                        Teacher teacher = createTeacher(user);
+						dal.teachers.Add(teacher);
+                        dal.SaveChanges();
+                    }
                     ViewBag.message = "User was added succesfully.";
                     user = new User();
                 }
@@ -132,6 +136,7 @@ namespace SocialNetwork.Controllers
 			{
 				email = user.email,
 				password = user.password,
+                name = user.name,
 				role = user.role,
 				courses = "",
 				ratings = ""
@@ -148,6 +153,7 @@ namespace SocialNetwork.Controllers
 			{
 				email = user.email,
 				password = user.password,
+                name = user.name,
 				role = user.role,
 				courses = "",
 				avgRating = 0
