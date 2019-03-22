@@ -7,11 +7,12 @@ using System.ComponentModel.DataAnnotations;
 namespace SocialNetwork.Models
 {   
     //This class describes the basic user
-    //Inherating classes: Admin, Teacher and Student
+    //Inherating classes: Teacher and Student
     public class User
     {
         //TODO: Add regular expressions
         [Required]
+		[StringLength(50,MinimumLength =5,ErrorMessage ="Name should be between 5-50 characters")]
         public string name { get; set; }
 
         [Required]

@@ -94,6 +94,12 @@ namespace SocialNetwork.Controllers
                 {
                     user.password = hashedPassword;
                     dal.users.Add(user);
+					if (user.role.Equals("Student"))
+						//Role: Student
+						dal.students.Add(createStudent(user));
+					else
+						//Role: Teacher
+						dal.teachers.Add(createTeacher(user));
                     dal.SaveChanges();
                     ViewBag.message = "User was added succesfully.";
                     user = new User();
@@ -117,7 +123,36 @@ namespace SocialNetwork.Controllers
             return false;
         }
 
+		/**
+		 * this function Creates a student from user 
+		 **/
+		private Student createStudent(User user)
+		{
+			Student student = new Student
+			{
+				email = user.email,
+				password = user.password,
+				role = user.role,
+				courses = "",
+				ratings = ""
+			};
+			return student;
+		}
 
-
-    }
+		/**
+		 * this function Creates a teacher from user 
+		 **/
+		private Teacher createTeacher(User user)
+		{
+			Teacher teacher = new Teacher
+			{
+				email = user.email,
+				password = user.password,
+				role = user.role,
+				courses = "",
+				avgRating = 0
+			};
+			return teacher;
+		}
+	}
 }
