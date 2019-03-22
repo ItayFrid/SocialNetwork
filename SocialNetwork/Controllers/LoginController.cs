@@ -99,7 +99,7 @@ namespace SocialNetwork.Controllers
                     user = new User();
                 }
                 else
-                    ViewBag.message = "Username Exists in database.";
+                    ViewBag.message = "Email Exists in database.";
             }
             else
                 ViewBag.message = "Error in registration.";
