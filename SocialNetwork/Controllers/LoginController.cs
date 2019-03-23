@@ -99,12 +99,14 @@ namespace SocialNetwork.Controllers
 						dal.students.Add(student);
                         dal.SaveChanges();
                     }
-                    else {
+                    else
+                    {
                         //Role: Teacher
                         Teacher teacher = createTeacher(user);
 						dal.teachers.Add(teacher);
                         dal.SaveChanges();
                     }
+                    
                     ViewBag.message = "User was added succesfully.";
                     user = new User();
                 }

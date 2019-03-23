@@ -23,6 +23,11 @@ namespace SocialNetwork
                 url: "",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "AdminPage",
+                url: "",
+                defaults: new { controller = "Admin", action = "Admin", id = UrlParameter.Optional }
+            );
         }
     }
 }
