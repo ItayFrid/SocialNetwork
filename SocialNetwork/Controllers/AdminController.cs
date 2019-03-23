@@ -24,6 +24,11 @@ namespace SocialNetwork.Controllers
             return View();
         }
 
+        public ActionResult AdminRegister()
+        {
+            return View();
+        }
+
         public ActionResult Admin()
         {
             return View("Admin");
@@ -55,7 +60,8 @@ namespace SocialNetwork.Controllers
 
                     var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                     Response.Cookies.Add(authCookie);
-                    return RedirectToRoute("AdminPage");
+                    return View("Admin");
+                    
                 }
                 else
                 {
