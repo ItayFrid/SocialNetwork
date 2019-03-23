@@ -16,16 +16,19 @@ namespace SocialNetwork.Controllers
             return View();
         }
 
-		public ActionResult ratingRegister()
+		public ActionResult RatingRegister()
 		{
-			Rating rating = new Rating();
+            Rating rating = new Rating();
 			ViewBag.message = "";
 			return View(rating);
 		}
 
-		public ActionResult addRating(Rating rating)
+		public ActionResult AddRating(Rating rating)
 		{
-			DataLayer dal = new DataLayer();
+            //rating.id = int.Parse(Request.Form["inputId"]);
+            //rating.courseId = int.Parse(Request.Form["inputCourseId"]);
+            //rating.rating = int.Parse(Request.Form["inputRating"]);
+            DataLayer dal = new DataLayer();
 			if (ModelState.IsValid)
 			{
 				dal.ratings.Add(rating);
@@ -35,7 +38,7 @@ namespace SocialNetwork.Controllers
 			}
 			else
 				ViewBag.message = "Error in submitting the rating.";
-			return View("ratingRegister", rating);
+			return View("RatingRegister", rating);
 		}
 	}
 }

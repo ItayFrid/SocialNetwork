@@ -1,54 +1,54 @@
 ﻿@model SocialNetwork.Models.Rating
 
 @{
-	/**/
-
-	ViewBag.Title = "Add Rating";
+    ViewBag.Title = "Add Rating";
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <h2>Add Rating</h2>
 
-@using (Html.BeginForm("addRating", "Rating", FormMethod.Post))
+@using (Html.BeginForm("AddRating", "Rating", FormMethod.Post))
 {
-	<div class="form-group row">
-		<label for="inputId" class="col-sm-2 col-form-label">ID</label>
-		<div class="col-sm-10">
-			@Html.TextBoxFor(m => m.id, new { @class = "form-control", id = "inputId" })
-			<small class="text-danger">@Html.ValidationMessageFor(x => x.id)</small>
-		</div>
-	</div>
+    <div class="form-group row">
+        <label for="inputId" class="col-sm-2 col-form-label">ID</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.id, new { @class = "form-control", id = "inputId" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.id)</small>
+        </div>
+    </div>
 
-	<div class="form-group row">
-		<label for="inputCourseId" class="col-sm-2 col-form-label">Course ID</label>
-		<div class="col-sm-10">
-			@Html.TextBoxFor(m => m.courseId, new { @class = "form-control", id = "inputCourseId" })
-			<small class="text-danger">@Html.ValidationMessageFor(x => x.courseId)</small>
-		</div>
-	</div>
+    <div class="form-group row">
+        <label for="inputCourseId" class="col-sm-2 col-form-label">Course ID</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.courseId, new { @class = "form-control", id = "inputCourseId" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.courseId)</small>
+        </div>
+    </div>
 
-	<div class="form-group row">
-		<label for="inputStudentEmail" class="col-sm-2 col-form-label">Student Email</label>
-		<div class="col-sm-10">
-			@Html.TextBoxFor(m => m.studentEmail, new { @class = "form-control", id = "inputStudentEmail", type = "email" })
-			<small class="text-danger">@Html.ValidationMessageFor(x => x.studentEmail)</small>
-		</div>
-	</div>
+    <div class="form-group row">
+        <label for="inputStudentEmail" class="col-sm-2 col-form-label">Student Email</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.studentEmail, new { @class = "form-control", id = "inputStudentEmail", type = "email" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.studentEmail)</small>
+        </div>
+    </div>
 
-	<div class="form-group row">
-		<label for="inputRating" class="col-sm-2 col-form-label">Rating</label>
-		<div class="col-sm-10">
-			@Html.TextBoxFor(m => m.rating, new { @class = "form-control", id = "inputRating" })
-			<small class="text-danger">@Html.ValidationMessageFor(x => x.rating)</small>
-		</div>
-	</div>
+    <div class="form-group row">
+        <label for="inputRating" class="col-sm-2 col-form-label">Rating</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.rating, new { @class = "form-control", id = "inputRating" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.rating)</small>
+        </div>
+    </div>
 
-	<div class="form-group row">
-		<label for="inputComment" class="col-sm-2 col-form-label">Comment</label>
-		<div class="col-sm-10">
-			@Html.TextAreaFor(m => m.comment, new { @class = "form-control", id = "inputComment" })
-			<small class="text-danger">@Html.ValidationMessageFor(x => x.comment)</small>
-		</div>
-	</div>
+    <div class="form-group row">
+        <label for="inputComment" class="col-sm-2 col-form-label">Comment</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.comment, new { @class = "form-control", id = "inputComment" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.comment)</small>
+        </div>
+    </div>
+    <input class="btn btn-outline-primary" id="submit" type="submit" value="Add Rating" />
+    <h4 class="text-danger">@ViewBag.message</h4>
 }

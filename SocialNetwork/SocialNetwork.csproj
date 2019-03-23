@@ -227,7 +227,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Login\UserRegister.cshtml" />
     <Content Include="Views\Login\UserLogin.cshtml" />
-    <Content Include="Views\Rating\ratingRegister.cshtml" />
+    <Content Include="Views\Rating\RatingRegister.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
