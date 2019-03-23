@@ -22,8 +22,8 @@ namespace SocialNetwork.Controllers
 			ViewBag.message = "";
 			return View(rating);
 		}
-
-		public ActionResult AddRating(Rating rating)
+        
+		public ActionResult addRating(Rating rating)
 		{
             //rating.id = int.Parse(Request.Form["inputId"]);
             //rating.courseId = int.Parse(Request.Form["inputCourseId"]);
