@@ -99,22 +99,29 @@ namespace SocialNetwork.Controllers
 						dal.students.Add(student);
                         dal.SaveChanges();
                     }
-                    else
+                    else if(user.role.Equals("Teacher"))
                     {
                         //Role: Teacher
                         Teacher teacher = createTeacher(user);
 						dal.teachers.Add(teacher);
                         dal.SaveChanges();
                     }
+                    else
+                    {
+                        dal.users.Add(user);
+                        dal.SaveChanges();
+                        return View("~/Views/Admin/Admin.cshtml");
+                    }
                     
                     ViewBag.message = "User was added succesfully.";
-                    user = new User();
+                    return View("UserLogin",user);
                 }
                 else
                     ViewBag.message = "Email Exists in database.";
             }
             else
                 ViewBag.message = "Error in registration.";
+            user = new User();
             return View("UserRegister", user);
         }
 
