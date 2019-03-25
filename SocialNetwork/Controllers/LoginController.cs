@@ -8,6 +8,8 @@ using System.Web.Security;
 using SocialNetwork.DAL;
 using SocialNetwork.Classes;
 
+
+//Test
 namespace SocialNetwork.Controllers
 {
     public class LoginController : Controller
