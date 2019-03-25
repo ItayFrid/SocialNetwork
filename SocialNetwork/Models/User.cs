@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SocialNetwork.Models
 {   
@@ -17,6 +18,7 @@ namespace SocialNetwork.Models
 
         [Required]
         [Key]
+        [Column(Order = 1)]
         [EmailAddress]
         public string email { get; set; }
 
@@ -25,8 +27,8 @@ namespace SocialNetwork.Models
 
         [Required]
         [Key]
-        [RegularExpression("^[0-9]$", ErrorMessage = "ID should be 9 digits")]
-        [StringLength(9,MinimumLength = 9,ErrorMessage = "ID should be 9 digits")]
+        [Column(Order = 2)]
+        [RegularExpression("^[0-9]{9}$", ErrorMessage = "ID should be 9 digits")]
         public string id { get; set; }
 
         [Required]

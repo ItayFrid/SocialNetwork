@@ -95,6 +95,7 @@ namespace SocialNetwork.Controllers
                 if (!userExists(user.email))     //Adding user to database
                 {
                     user.password = hashedPassword;
+                    
                     if (user.role.Equals("Student")) {
                         //Role: Student
                         Student student = createStudent(user);
@@ -143,14 +144,15 @@ namespace SocialNetwork.Controllers
 		 **/
 		private Student createStudent(User user)
 		{
-			Student student = new Student
-			{
-				email = user.email,
-				password = user.password,
+            Student student = new Student
+            {
+                email = user.email,
+                password = user.password,
                 name = user.name,
-				role = user.role,
-				courses = "",
-				ratings = ""
+                role = user.role,
+                courses = "",
+                ratings = "",
+                id = user.id
 			};
 			return student;
 		}
@@ -168,6 +170,7 @@ namespace SocialNetwork.Controllers
                 role = user.role,
                 courses = "",
                 avgRating = 0,
+                id = user.id,
                 authorized = false
 			};
 			return teacher;
