@@ -8,6 +8,8 @@ using System.Web.Security;
 using SocialNetwork.DAL;
 using SocialNetwork.Classes;
 
+
+//Test
 namespace SocialNetwork.Controllers
 {
     public class LoginController : Controller
@@ -158,14 +160,15 @@ namespace SocialNetwork.Controllers
 		 **/
 		private Teacher createTeacher(User user)
 		{
-			Teacher teacher = new Teacher
-			{
-				email = user.email,
-				password = user.password,
+            Teacher teacher = new Teacher
+            {
+                email = user.email,
+                password = user.password,
                 name = user.name,
-				role = user.role,
-				courses = "",
-				avgRating = 0
+                role = user.role,
+                courses = "",
+                avgRating = 0,
+                authorized = false
 			};
 			return teacher;
 		}
