@@ -12,6 +12,8 @@ namespace SocialNetwork.Models
 
         public float avgRating { get; set; }
 
+        public bool authorized { get; set; }
+
 
     }
 }
