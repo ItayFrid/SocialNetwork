@@ -1,0 +1,35 @@
+﻿
+<nav class="navbar fixed-top navbar-dark bg-dark text-white-50">
+    <span class="navbar-brand mb-0 h1 text-white-50" href="#">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#RightNavC" aria-controls="RightNavC" aria-expanded="false" aria-label="Toggle RightBar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        SocialNetwork
+    </span>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <ul class="nav">
+            <li class="nav-item nav-link">
+                <a class="" href="#"><i class="far fa-bell text-white-50"></i></a>
+                <span class="badge badge-pill badge-danger notification">3</span>
+            </li>
+            <li class="nav-item nav-link">
+                <a href="#"><i class="far fa-envelope text-white-50"></i></a>
+                <span class="badge badge-pill badge-danger notification">1</span>
+            </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item"><a class="nav-link" href="@Url.Action("Admin", "Admin")"><i class="fas fa-tools text-white-50"></i></a></li>
+            }
+            <li class="nav-item"><a class="nav-link" href="@Url.Action("LogOut", "Login")"><i class="fas fa-sign-out-alt text-white-50"></i></a></li>
+
+        </ul>
+    }
+    else
+    {
+        <ul class="nav">
+            <li class="nav-item">@Html.ActionLink("Register", "UserRegister", "Login", null, new { @class = "nav-link text-white-50" })</li>
+            <li class="nav-item">@Html.ActionLink("Login", "UserLogin", "Login", null, new { @class = "nav-link text-white-50" })</li>
+        </ul>
+    }
+</nav>
