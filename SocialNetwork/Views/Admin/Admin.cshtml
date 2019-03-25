@@ -1,8 +1,34 @@
-﻿
+﻿@model SocialNetwork.ViewModels.ViewModel
 @{
     ViewBag.Title = "Admin";
 }
 
 <h2>Admin</h2>
 
-<br />
+@if (Model.teachers.Count != 0)
+{
+    <h2>Pending Teachers</h2>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>ID</th>
+        </tr>
+
+        @foreach (var teacher in Model.teachers){
+            <tr>
+                <td>@teacher.name</td>
+                <td>@teacher.email</td>
+                <td>@teacher.id</td>
+                <td>
+                    <form action="SetAuth" method="post">
+                        <input name="auth" type="hidden" value="@teacher.email"/>
+                        <input type="submit" class="btn btn-outline-success"value="Authorize" />
+
+                    </form>
+                </td>
+            </tr>
+        }
+     </table>
+            }
+            <br />

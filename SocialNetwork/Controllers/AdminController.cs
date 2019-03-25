@@ -7,6 +7,7 @@ using SocialNetwork.Models;
 using SocialNetwork.DAL;
 using SocialNetwork.Classes;
 using System.Web.Security;
+using SocialNetwork.ViewModels;
 
 namespace SocialNetwork.Controllers
 {
@@ -31,7 +32,29 @@ namespace SocialNetwork.Controllers
 
         public ActionResult Admin()
         {
-            return View("Admin");
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            vm.teachers = (from x in dal.teachers
+                                      where x.authorized == false
+                                      select x).ToList<Teacher>();       //Attempting to get unauthorized teachers from database
+
+            return View("Admin", vm);
+        }
+
+        //This 
+        public ActionResult SetAuth()
+        {
+            DataLayer dal = new DataLayer();
+     
+            string email = Request.Form["auth"].ToString();
+            foreach (Teacher t in dal.teachers)
+            {
+                if (t.email.Equals(email))
+                    t.authorized = true;
+            }
+            dal.SaveChanges();
+
+            return RedirectToAction("Admin");
         }
 
 
