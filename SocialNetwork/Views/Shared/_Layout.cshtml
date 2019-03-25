@@ -18,24 +18,28 @@
             SocialNetwork
         </span>
         @if (User.Identity.IsAuthenticated) {
-			<ul class="nav">
-				<li class="nav-item nav-link">
-					<a class="" href="#"><i class="far fa-bell text-white-50"></i></a>
-					<span class="badge badge-pill badge-danger notification">3</span>
-				</li>
-				<li class="nav-item nav-link">
-					<a href="#"><i class="far fa-envelope text-white-50"></i></a>
-					<span class="badge badge-pill badge-danger notification">1</span>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="#"><i class="far fa-user text-white-50"></i></a></li>
-			</ul>
+        <ul class="nav">
+            <li class="nav-item nav-link">
+                <a class="" href="#"><i class="far fa-bell text-white-50"></i></a>
+                <span class="badge badge-pill badge-danger notification">3</span>
+            </li>
+            <li class="nav-item nav-link">
+                <a href="#"><i class="far fa-envelope text-white-50"></i></a>
+                <span class="badge badge-pill badge-danger notification">1</span>
+            </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item"><a class="nav-link" href="@Url.Action("Admin", "Admin")"><i class="fas fa-tools text-white-50"></i></a></li>
+            }
+            <li class="nav-item"><a class="nav-link" href="@Url.Action("LogOut", "Login")"><i class="fas fa-sign-out-alt text-white-50"></i></a></li>
+
+        </ul>
 		}
 		else
 		{
             <ul class="nav">
                 <li class="nav-item">@Html.ActionLink("Register", "UserRegister", "Login", null, new { @class = "nav-link text-white-50" })</li>
                 <li class="nav-item">@Html.ActionLink("Login", "UserLogin", "Login", null, new { @class = "nav-link text-white-50" })</li>
-                <li class="nav-item">@Html.ActionLink("Admin", "AdminLogin", "Admin", null, new { @class = "nav-link text-white-50" })</li>
             </ul>
 		}
     </nav>
