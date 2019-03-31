@@ -30,8 +30,23 @@ namespace SocialNetwork.Models
         [Column(Order = 2)]
         [RegularExpression("^[0-9]{9}$", ErrorMessage = "ID should be 9 digits")]
         public string id { get; set; }
-
+        [Required]
+        public bool blocked { get; set; }
         [Required]
         public string role { get; set; }
+        public string getBlockedColor()
+        {
+            if (blocked)
+                return "success";
+            else
+                return "danger";
+        }
+        public string getBlockedText()
+        {
+            if (blocked)
+                return "Unblock";
+            else
+                return "Block";
+        }
     }
 }

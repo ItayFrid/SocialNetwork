@@ -95,6 +95,33 @@ namespace SocialNetwork.Controllers
                 ViewBag.UserLoginMessage = "Incorrect Username/password";
             return View("AdminLogin", user);
         }
+        public ActionResult BlockUser()
+        {
+            DataLayer dal = new DataLayer();
+
+            string email = Request.Form["block"].ToString();
+            foreach (User u in dal.users)
+            {
+                if (u.email.Equals(email))
+                    u.blocked = !u.blocked;
+            }
+            dal.SaveChanges();
+
+            return RedirectToAction("ManageUsers");
+        }
+
+        public ActionResult ManageUsers()
+        {
+            ViewModel vm = new ViewModel();
+            DataLayer dal = new DataLayer();
+            vm.users = (from x in dal.users
+                        select x).ToList<User>();
+            List<User> usr = (from x in dal.users
+                              where x.email == User.Identity.Name
+                              select x ).ToList<User>();
+            vm.user = usr[0];
+            return View(vm);
+        }
 
     }
 }
