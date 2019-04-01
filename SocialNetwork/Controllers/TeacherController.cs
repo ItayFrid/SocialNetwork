@@ -37,21 +37,41 @@ namespace SocialNetwork.Controllers
         {
             DataLayer dal = new DataLayer();
 
-
             List<Teacher> teacher = (from x in dal.teachers
                                       where x.email == User.Identity.Name
                                       select x).ToList<Teacher>();       //Getting teacher from db
 
+            //Intializing fields not included in form
+            newCourse.books = null;
             newCourse.ratings = null;
             newCourse.avgRating = 0;
             newCourse.teacher = teacher[0];
+
+            //Updating database
             teacher[0].courses.Add(newCourse);
             dal.courses.Add(newCourse);
-
             dal.SaveChanges();
-            
 
             return View("Teacher");
+        }
+
+        public ActionResult EditResume()
+        {
+            DataLayer dal = new DataLayer();
+            List<Teacher> teacher = (from x in dal.teachers
+                                     where x.email == User.Identity.Name
+                                     select x).ToList<Teacher>();
+            return View(teacher[0]);
+        }
+        public ActionResult Resume()
+        {
+            DataLayer dal = new DataLayer();
+            List<Teacher> teacher = (from x in dal.teachers
+                                     where x.email == User.Identity.Name
+                                     select x).ToList<Teacher>();
+
+            //teacher[0].resume = Request.Form[]
+            return View();
         }
 
         

@@ -178,7 +178,7 @@ namespace SocialNetwork.Controllers
                 avgRating = 0,
                 id = user.id,
                 authorized = false,
-                resume = null
+                resume = ""
 
 			};
 			return teacher;

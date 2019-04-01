@@ -242,7 +242,7 @@
     <Content Include="Views\Admin\ShowUsers.cshtml" />
     <Content Include="Views\Teacher\AddCourse.cshtml" />
     <Content Include="Views\Teacher\Teacher.cshtml" />
-    <Content Include="Views\Teacher\AddResume.cshtml" />
+    <Content Include="Views\Teacher\EditResume.cshtml" />
     <Content Include="Views\Student\Student.cshtml" />
     <Content Include="Views\Student\Complaint.cshtml" />
   </ItemGroup>
