@@ -123,5 +123,14 @@ namespace SocialNetwork.Controllers
             return View(vm);
         }
 
+        public ActionResult ShowUsers()
+        {
+            ViewModel vm = new ViewModel();
+            DataLayer dal = new DataLayer();
+            vm.users = (from x in dal.users
+                        select x).ToList<User>();
+            return View(vm);
+        }
+
     }
 }
