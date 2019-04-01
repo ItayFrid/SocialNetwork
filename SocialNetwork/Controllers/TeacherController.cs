@@ -8,6 +8,7 @@ using SocialNetwork.Models;
 
 namespace SocialNetwork.Controllers
 {
+    [Authorize(Roles ="Teacher")]
     public class TeacherController : Controller
     {
         // GET: Teacher
@@ -16,9 +17,23 @@ namespace SocialNetwork.Controllers
             return View();
         }
 
+        public ActionResult Teacher()
+        {
+            DataLayer dal = new DataLayer();
+            List<Teacher> teacher = (from x in dal.teachers
+                                     where x.email == User.Identity.Name
+                                     select x).ToList<Teacher>();       //Getting teacher from db
+            return View(teacher[0]);
+        }
+
+        public ActionResult AddCourse()
+        {
+            Course course = new Course();
+            return View(course);
+        }
 
         //This action creates and updates new course
-        public ActionResult addCourse(Course newCourse)
+        public ActionResult NewCourse(Course newCourse)
         {
             DataLayer dal = new DataLayer();
 

@@ -55,7 +55,13 @@ namespace SocialNetwork.Controllers
 
                     var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
                     Response.Cookies.Add(authCookie);
-                    return RedirectToRoute("HomePage");
+
+                    if(userToCheck[0].role.Equals("Admin"))
+                        return RedirectToAction("Admin", "Admin");
+                    else if(userToCheck[0].role.Equals("Teacher"))
+                        return RedirectToAction("Teacher", "Teacher");
+                    else
+                        return RedirectToAction("Student", "Student");
                 }
                 else
                 {
@@ -168,7 +174,7 @@ namespace SocialNetwork.Controllers
                 password = user.password,
                 name = user.name,
                 role = user.role,
-                courses = new List<Course>(),
+                //courses = new List<Course>(),
                 avgRating = 0,
                 id = user.id,
                 authorized = false,

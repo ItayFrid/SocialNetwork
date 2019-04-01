@@ -1,7 +1,26 @@
-﻿
+﻿@model SocialNetwork.Models.Teacher
 @{
+    /**/
+
     ViewBag.Title = "Teacher";
 }
 
 <h2>Teacher</h2>
+
+<ul class="list-group text-center">
+    <li class="list-group-item @Model.isAuthorized()">
+        <a href="@Url.Action("AddCourse", "Teacher")">Add Course</a>
+    </li>
+</ul>
+
+<br />
+
+@if (!Model.authorized)
+{
+    <h4 class="text-danger">Your registration still awaits authorization,</h4>
+    
+    <h4 class="text-danger">some actions will be unavailable for you at this time.</h4>
+}
+
+
 
