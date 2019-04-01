@@ -2,29 +2,27 @@
 @model SocialNetwork.Models.Teacher
 
 @{
-    ViewBag.Title = "AddCourse";
+    ViewBag.Title = "EditResume";
 }
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-<h2>Add Course</h2>
+<h2>Add/Edit Resume</h2>
 <hr />
 
+@using (Html.BeginForm("Resume", "Teacher", FormMethod.Post))
+{
+    
+        <label for="inputResume" class="col-sm-2 col-form-label">Resume</label>
 
-<div class="form-group row">
-    <label for="inputResume" class="col-sm-2 col-form-label">Resume</label>
+        <div class="col-sm-10">
 
-    <div class="col-sm-10">
-        <textarea rows="10", id="Resume">@Model.resume</textarea>
-    </div>
+            <textarea rows="10" , id="Resume">@Model.resume</textarea>
+        </div>
+        <br />
+        <input class="btn btn-outline-primary" id="submit" type="submit" value="Submit"  />
+    
 
-    <input class="btn btn-outline-primary" id="submit" type="submit" value="Submit" />
-</div>
+}
 
-
-
-    <input class="btn btn-outline-primary" id="submit" type="submit" value="Add Course" />
-    <h4 class="text-danger">@ViewBag.message</h4>
-
-
-
+<h4 class="text-danger">@ViewBag.message</h4>

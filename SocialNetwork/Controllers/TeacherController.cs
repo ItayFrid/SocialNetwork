@@ -52,7 +52,7 @@ namespace SocialNetwork.Controllers
             dal.courses.Add(newCourse);
             dal.SaveChanges();
 
-            return View("Teacher");
+            return View("Teacher", teacher[0]);
         }
 
         public ActionResult EditResume()
@@ -61,8 +61,14 @@ namespace SocialNetwork.Controllers
             List<Teacher> teacher = (from x in dal.teachers
                                      where x.email == User.Identity.Name
                                      select x).ToList<Teacher>();
+
+            //teacher[0].resume = Request.Form["Resume"];
+            //dal.SaveChanges();
+
             return View(teacher[0]);
         }
+        
+        //TODO: Fix form transfer
         public ActionResult Resume()
         {
             DataLayer dal = new DataLayer();
@@ -70,8 +76,9 @@ namespace SocialNetwork.Controllers
                                      where x.email == User.Identity.Name
                                      select x).ToList<Teacher>();
 
-            //teacher[0].resume = Request.Form[]
-            return View();
+            teacher[0].resume = Request.Form["Resume"];
+            dal.SaveChanges();
+            return View("Teacher", teacher[0]);
         }
 
         
