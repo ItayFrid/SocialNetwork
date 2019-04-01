@@ -11,6 +11,7 @@ using SocialNetwork.ViewModels;
 
 namespace SocialNetwork.Controllers
 {
+    [Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -127,7 +128,12 @@ namespace SocialNetwork.Controllers
         {
             ViewModel vm = new ViewModel();
             DataLayer dal = new DataLayer();
+            vm.teachers = (from x in dal.teachers
+                        select x).ToList<Teacher>();
+            vm.students = (from x in dal.students
+                           select x).ToList<Student>();
             vm.users = (from x in dal.users
+                        where x.role == "Admin"
                         select x).ToList<User>();
             return View(vm);
         }

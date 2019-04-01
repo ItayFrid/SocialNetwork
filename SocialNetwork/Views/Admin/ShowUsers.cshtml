@@ -4,5 +4,65 @@
     ViewBag.Title = "ShowUsers";
 }
 
-<h2>ShowUsers</h2>
+<h2>Show Users</h2>
+<hr />
+<div class="row container text-center">
+    <div class="col-sm-4">
+        <h4>Teachers</h4>
+        <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            @foreach(var teacher in Model.teachers)
+            {
+                <tr>
+                    <td>@teacher.email</td>
+                    <td>@teacher.name</td>
+                </tr>
+            }
+        </table>
+        Total Teachers :<b class="text-info"> @Model.teachers.Count</b>
+    </div>
+    <div class="col-sm-4">
+        <h4>Students</h4>
+        <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            @foreach (var student in Model.students)
+            {
+                <tr>
+                    <td>@student.email</td>
+                    <td>@student.name</td>
+                </tr>
+            }
+        </table>
+        Total Students :<b class="text-info"> @Model.students.Count</b>
+    </div>
+    <div class="col-sm-4">
+        <h4>Admins</h4>
+        <table class="table table-bordered table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Email</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            @foreach (var admin in Model.users)
+            {
+                <tr>
+                    <td>@admin.email</td>
+                    <td>@admin.name</td>
+                </tr>
+            }
+        </table>
+        Total Admins :<b class="text-info"> @Model.users.Count</b>
+    </div>
 
+</div>

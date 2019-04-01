@@ -6,11 +6,13 @@
     <div class="col-sm-6">
         <h3>Unblocked</h3>
         <table class="table">
-            <tr>
-                <td>Email</td>
-                <td>Role</td>
-                <td>Block</td>
-            </tr>
+            <thead class="thead-light">
+                <tr>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Block</th>
+                </tr>
+            </thead>
             @foreach (var user in Model.users)
             {
                 if (!user.blocked)
@@ -39,11 +41,13 @@
     <div class="col-sm-6">
         <h3>Blocked</h3>
         <table class="table">
-            <tr>
-                <td>Email</td>
-                <td>Role</td>
-                <td>Unblock</td>
-            </tr>
+            <thead class="thead-light">
+                <tr>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Unblock</th>
+                </tr>
+            </thead>
             @foreach (var user in Model.users)
             {
                 if (user.blocked)

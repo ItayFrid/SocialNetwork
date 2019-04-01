@@ -4,9 +4,21 @@
 }
 
 <h2>Admin</h2>
+<hr />
+
 <div class="row">
     <div class="col-sm-8">
-        <a href="@Url.Action("ManageUsers", "Admin")">Manage Users</a>
+        <ul class="list-group text-center">
+            <li class="list-group-item">
+                <a href="@Url.Action("ManageUsers", "Admin")">Manage Users</a>
+            </li>
+            <li class="list-group-item">
+                <a href="@Url.Action("ShowUsers", "Admin")">Show All Users</a>
+            </li>
+            <li class="list-group-item">
+                <a href="@Url.Action("AdminRegister", "Admin")">Add New Admin</a>
+            </li>
+        </ul>
     </div>
     <div class="col-sm-4">
         @if (Model.teachers != null && Model.teachers.Count != 0)
