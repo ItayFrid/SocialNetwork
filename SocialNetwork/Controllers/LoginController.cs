@@ -168,10 +168,12 @@ namespace SocialNetwork.Controllers
                 password = user.password,
                 name = user.name,
                 role = user.role,
-                courses = "",
+                courses = new List<Course>(),
                 avgRating = 0,
                 id = user.id,
-                authorized = false
+                authorized = false,
+                resume = null
+
 			};
 			return teacher;
 		}

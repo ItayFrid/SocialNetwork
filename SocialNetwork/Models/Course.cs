@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,14 +10,18 @@ namespace SocialNetwork.Models
     public class Course
     {
         [Key]
-        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
+
+        public Teacher teacher { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Name must be between 2-50")]
         public string name { get; set; }
         [Required]
+        [Range(0, float.MaxValue, ErrorMessage = "Please enter a valid number")]
         public float price { get; set; }
         [Required]
+        [StringLength(255, MinimumLength = 2, ErrorMessage = "Tags must be between 2-255")]
         public string tags { get; set; }
         public string ratings { get; set; }
         public float avgRating { get; set; }

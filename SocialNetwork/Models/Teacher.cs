@@ -8,12 +8,13 @@ namespace SocialNetwork.Models
 
     public class Teacher : User
     {
-        public string courses { get; set; }
+        public List<Course> courses { get; set; }
 
         public float avgRating { get; set; }
-
+        
         public bool authorized { get; set; }
 
+        public string resume { get; set; }
 
     }
 }

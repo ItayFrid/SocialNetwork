@@ -139,6 +139,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RatingController.cs" />
+    <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="DAL\DataLayer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,9 +238,12 @@
     <Content Include="Views\Shared\Navbar.cshtml" />
     <Content Include="Views\Admin\ManageUsers.cshtml" />
     <Content Include="Views\Admin\ShowUsers.cshtml" />
+    <Content Include="Views\Teacher\AddCourse.cshtml" />
+    <Content Include="Views\Teacher\Teacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

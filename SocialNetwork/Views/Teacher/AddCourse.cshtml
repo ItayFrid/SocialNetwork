@@ -1,0 +1,59 @@
+﻿
+@model SocialNetwork.Models.Course
+
+@{
+    ViewBag.Title = "AddCourse";
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<h2>Add Course</h2>
+<hr />
+
+@using (Html.BeginForm("addCourse", "Teacher", FormMethod.Post))
+{
+
+
+
+    <div class="form-group row">
+        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.name, new { @class = "form-control", id = "inputName", type = "name" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.name)</small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputPrice" class="col-sm-2 col-form-label">Price</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.price, new { @class = "form-control", id = "inputPrice" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.price)</small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputTags" class="col-sm-2 col-form-label">Tags</label>
+        
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.tags, new { @class = "form-control", id = "inputTags" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.tags)</small>
+            <small class="text-info">Please enter course tags devided bý a comma</small>
+            <small class="text-info">for example: Math, Physics etc.</small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputBooks" class="col-sm-2 col-form-label">Books</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.books, new { @class = "form-control", id = "inputBooks" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.books)</small>
+        </div>
+    </div>
+
+    
+    
+    <input class="btn btn-outline-primary" id="submit" type="submit" value="Add Course" />
+    <h4 class="text-danger">@ViewBag.message</h4>
+}
+
+
