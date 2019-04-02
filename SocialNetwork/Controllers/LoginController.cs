@@ -155,7 +155,6 @@ namespace SocialNetwork.Controllers
                 password = user.password,
                 name = user.name,
                 role = user.role,
-                courses = "",
                 ratings = "",
                 id = user.id
 			};

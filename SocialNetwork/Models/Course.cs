@@ -9,11 +9,14 @@ namespace SocialNetwork.Models
 {
     public class Course
     {
+        public Course()
+        {
+            students = new List<Student>();
+        }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-
-        public Teacher teacher { get; set; }
+        public virtual Teacher teacher { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Name must be between 2-50")]
         public string name { get; set; }
@@ -26,5 +29,6 @@ namespace SocialNetwork.Models
         public string ratings { get; set; }
         public float avgRating { get; set; }
         public string books { get; set; }
+        public virtual ICollection<Student> students { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -12,7 +13,8 @@ namespace SocialNetwork.Models
         {
             courses = new List<Course>();
         }
-        public ICollection<Course> courses { get; set; }
+
+        public virtual ICollection<Course> courses { get; set; }
 
         public float avgRating { get; set; }
         

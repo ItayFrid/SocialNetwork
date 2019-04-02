@@ -13,16 +13,17 @@ namespace SocialNetwork.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-			modelBuilder.Entity<Course>().ToTable("Courses");
+			modelBuilder.Entity<Course>().ToTable("Courses").HasMany(x => x.students);
 			//modelBuilder.Entity<Enroll>().ToTable("Enrolls");
 			modelBuilder.Entity<Rating>().ToTable("Ratings");
-			modelBuilder.Entity<Student>().ToTable("Students");
-            modelBuilder.Entity<Teacher>().ToTable("Teachers");
+			modelBuilder.Entity<Student>().ToTable("Students").HasMany(x =>x.courses);
+            modelBuilder.Entity<Teacher>().ToTable("Teachers").HasMany(x => x.courses);
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Complaint>().ToTable("Complaints");
 
+            base.OnModelCreating(modelBuilder);
         }
-
+        
 		/*Database sets*/
 		public DbSet<Course> courses { get; set; }
 		//public DbSet<Enroll> enrolls { get; set; }
