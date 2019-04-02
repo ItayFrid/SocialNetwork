@@ -26,11 +26,20 @@
     <div class="form-group row">
         <label for="inputBody" class="col-sm-2 col-form-label">Body</label>
         <div class="col-sm-10">
-            @Html.TextBoxFor(m => m.complaint.body, new { @class = "form-control", id = "inputBody" })
+            @Html.TextAreaFor(m => m.complaint.body, new { @class = "form-control", id = "inputBody" })
             <small class="text-danger">@Html.ValidationMessageFor(x => x.complaint.body)</small>
         </div>
     </div>
-    <input id="sender" name="@User.Identity.Name" type="hidden" value="false" />
-    <input class="btn btn-outline-primary" id="submit" type="submit" value="Add Course" />
-    <h4 class="text-danger">@ViewBag.message</h4>
+    <input id="sender" name="@User.Identity.Name" type="hidden" value="@User.Identity.Name" />
+    
+    if (Model.teachers.Count == 0)
+    {
+        <input class="btn btn-outline-primary" id="submit" type="submit" value="Add Complaint" disabled/>
+        <small class="text-danger">No teachers in database</small>
     }
+    else
+    {
+        <input class="btn btn-outline-primary" id="submit" type="submit" value="Add Complaint" />
+    }
+    <h4 class="text-danger">@ViewBag.message</h4>
+}

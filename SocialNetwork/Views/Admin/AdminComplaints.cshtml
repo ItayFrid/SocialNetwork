@@ -1,0 +1,32 @@
+﻿@model SocialNetwork.ViewModels.ViewModel
+
+@{
+    ViewBag.Title = "AdminComplaints";
+}
+
+<h2>AdminComplaints</h2>
+<hr />
+
+<div class="container">
+    @foreach(var complaint in Model.complaints)
+    {
+    <div class="card">
+        <div class="card-header text-center alert alert-danger  ">
+            <div class="col">
+                <b>Sender:</b> @complaint.Sender
+            </div>
+            <div class="col">
+                <b>Target:</b> @complaint.Target
+            </div>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Body</h5>
+            <p class="card-text">@complaint.body</p>
+        </div>
+        <div class="card-footer text-center alert alert-danger">
+            DELETE
+        </div>
+    </div>
+        <br />
+    }
+</div>

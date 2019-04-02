@@ -119,7 +119,6 @@ namespace SocialNetwork.Controllers
                     {
                         dal.users.Add(user);
                         dal.SaveChanges();
-                        return View("~/Views/Admin/Admin.cshtml");
                     }
                     
                     ViewBag.message = "User was added succesfully.";
@@ -174,7 +173,6 @@ namespace SocialNetwork.Controllers
                 password = user.password,
                 name = user.name,
                 role = user.role,
-                //courses = new List<Course>(),
                 avgRating = 0,
                 id = user.id,
                 authorized = false,

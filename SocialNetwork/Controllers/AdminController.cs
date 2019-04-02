@@ -11,7 +11,7 @@ using SocialNetwork.ViewModels;
 
 namespace SocialNetwork.Controllers
 {
-    [Authorize(Roles="Admin")]
+    //[Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -38,7 +38,8 @@ namespace SocialNetwork.Controllers
             vm.teachers = (from x in dal.teachers
                                       where x.authorized == false
                                       select x).ToList<Teacher>();       //Attempting to get unauthorized teachers from database
-
+            vm.complaints = (from x in dal.complaints
+                             select x).ToList<Complaint>();
             return View("Admin", vm);
         }
 
@@ -138,5 +139,13 @@ namespace SocialNetwork.Controllers
             return View(vm);
         }
 
+        public ActionResult AdminComplaints()
+        {
+            ViewModel vm = new ViewModel();
+            DataLayer dal = new DataLayer();
+            vm.complaints = (from x in dal.complaints
+                             select x).ToList<Complaint>();
+            return View(vm);
+        }
     }
 }

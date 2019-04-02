@@ -12,8 +12,9 @@ namespace SocialNetwork.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        public User Sender { get; set; }
-        public User Target { get; set; }
+        public string Sender { get; set; }
+        public string Target { get; set; }
+        [Required]
         public string body { get; set; }
     }
 }

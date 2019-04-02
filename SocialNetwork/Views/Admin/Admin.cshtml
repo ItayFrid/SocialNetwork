@@ -18,6 +18,13 @@
             <li class="list-group-item">
                 <a href="@Url.Action("AdminRegister", "Admin")">Add New Admin</a>
             </li>
+            <li class="list-group-item">
+                <a href="@Url.Action("AdminComplaints", "Admin")">View Complaints</a>
+                @if (Model.complaints.Count != 0)
+                {
+                    <span class="badge badge-danger">@Model.complaints.Count</span>
+                }
+            </li>
         </ul>
     </div>
     <div class="col-sm-4">

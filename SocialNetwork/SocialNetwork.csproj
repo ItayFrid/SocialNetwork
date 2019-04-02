@@ -245,6 +245,7 @@
     <Content Include="Views\Teacher\EditResume.cshtml" />
     <Content Include="Views\Student\Student.cshtml" />
     <Content Include="Views\Student\Complaint.cshtml" />
+    <Content Include="Views\Admin\AdminComplaints.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

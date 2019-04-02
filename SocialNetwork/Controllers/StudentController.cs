@@ -43,13 +43,8 @@ namespace SocialNetwork.Controllers
         public ActionResult NewComplaint(Complaint complaint)
         {
             DataLayer dal = new DataLayer();
-            complaint.Sender = (from x in dal.users
-                                where x.email == User.Identity.Name
-                                select x).ToList<User>()[0];
-            string targetEmail = Request.Form["complaint.Target"];
-            complaint.Target = (from x in dal.users
-                                where x.email == targetEmail
-                                select x).ToList<User>()[0];
+            complaint.Sender = User.Identity.Name;
+            complaint.Target = Request.Form["complaint.Target"];
             dal.complaints.Add(complaint);
             dal.SaveChanges();
             return RedirectToAction("Student","Student");
