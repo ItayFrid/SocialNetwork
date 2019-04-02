@@ -1,5 +1,6 @@
 ﻿using SocialNetwork.DAL;
 using SocialNetwork.Models;
+using SocialNetwork.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,31 @@ namespace SocialNetwork.Controllers
 
         public ActionResult Complaint()
         {
+            ViewModel vm = new ViewModel();
+            DataLayer dal = new DataLayer();
+            vm.teachers = (from x in dal.teachers
+                           where x.role == "Teacher"
+                           select x).ToList<Teacher>();
+            vm.student = (from x in dal.students
+                          where x.email == User.Identity.Name
+                          select x).ToList<Student>()[0];
             Complaint complaint = new Complaint();
-            return View(complaint);
+            return View(vm);
+        }
+
+        public ActionResult NewComplaint(Complaint complaint)
+        {
+            DataLayer dal = new DataLayer();
+            complaint.Sender = (from x in dal.users
+                                where x.email == User.Identity.Name
+                                select x).ToList<User>()[0];
+            string targetEmail = Request.Form["complaint.Target"];
+            complaint.Target = (from x in dal.users
+                                where x.email == targetEmail
+                                select x).ToList<User>()[0];
+            dal.complaints.Add(complaint);
+            dal.SaveChanges();
+            return RedirectToAction("Student","Student");
         }
     }
 }

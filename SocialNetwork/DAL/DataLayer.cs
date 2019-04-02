@@ -19,6 +19,7 @@ namespace SocialNetwork.DAL
 			modelBuilder.Entity<Student>().ToTable("Students");
             modelBuilder.Entity<Teacher>().ToTable("Teachers");
             modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Complaint>().ToTable("Complaints");
 
         }
 
@@ -29,6 +30,7 @@ namespace SocialNetwork.DAL
 		public DbSet<Student> students { get; set; }
         public DbSet<Teacher> teachers { get; set; }
         public DbSet<User> users { get; set; }
+        public DbSet<Complaint> complaints { get; set; }
 
     }
 }
