@@ -11,7 +11,7 @@ using SocialNetwork.ViewModels;
 
 namespace SocialNetwork.Controllers
 {
-    //[Authorize(Roles="Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -25,7 +25,7 @@ namespace SocialNetwork.Controllers
 
             return View();
         }
-
+        [AllowAnonymous]
         public ActionResult AdminRegister()
         {
             return View();
@@ -146,6 +146,18 @@ namespace SocialNetwork.Controllers
             vm.complaints = (from x in dal.complaints
                              select x).ToList<Complaint>();
             return View(vm);
+        }
+
+        public ActionResult DeleteComplaint()
+        {
+            DataLayer dal = new DataLayer();
+            int id = int.Parse(Request.Form["delete"]);
+            Complaint complaint = (from x in dal.complaints
+                                   where x.id == id
+                                   select x).ToList<Complaint>()[0];
+            dal.complaints.Remove(complaint);
+            dal.SaveChanges();
+            return RedirectToAction("AdminComplaints", "Admin");
         }
     }
 }

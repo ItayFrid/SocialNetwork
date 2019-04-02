@@ -4,27 +4,34 @@
     ViewBag.Title = "AdminComplaints";
 }
 
-<h2>AdminComplaints</h2>
+<h2>Complaints</h2>
 <hr />
 
 <div class="container">
     @foreach(var complaint in Model.complaints)
     {
     <div class="card">
-        <div class="card-header text-center alert alert-danger  ">
-            <div class="col">
-                <b>Sender:</b> @complaint.Sender
-            </div>
-            <div class="col">
-                <b>Target:</b> @complaint.Target
+        <div class="card-header alert alert-danger">
+            <div class="row">
+                <div class="col-2 text-left">
+                    <b>#@complaint.id</b>
+                </div>
+                <div class="col-5">
+                    <b>Sender:</b> @complaint.Sender
+                </div>
+                <div class="col-5">
+                    <b>Target:</b> @complaint.Target
+                </div>
             </div>
         </div>
         <div class="card-body">
-            <h5 class="card-title">Body</h5>
             <p class="card-text">@complaint.body</p>
         </div>
-        <div class="card-footer text-center alert alert-danger">
-            DELETE
+        <div class="card-footer text-center">
+            <form action="DeleteComplaint" method="post">
+                <input name="delete" type="hidden" value="@complaint.id" />
+                <input type="submit" class="btn btn-outline-danger" value="Delete" />
+            </form>
         </div>
     </div>
         <br />
