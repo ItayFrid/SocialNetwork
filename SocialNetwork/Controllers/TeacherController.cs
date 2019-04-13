@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using SocialNetwork.DAL;
 using SocialNetwork.Models;
+using SocialNetwork.ViewModels;
 
 namespace SocialNetwork.Controllers
 {
@@ -61,26 +62,54 @@ namespace SocialNetwork.Controllers
             List<Teacher> teacher = (from x in dal.teachers
                                      where x.email == User.Identity.Name
                                      select x).ToList<Teacher>();
-
-            //teacher[0].resume = Request.Form["Resume"];
-            //dal.SaveChanges();
-
             return View(teacher[0]);
         }
         
-        //TODO: Fix form transfer
         public ActionResult Resume()
         {
             DataLayer dal = new DataLayer();
             List<Teacher> teacher = (from x in dal.teachers
                                      where x.email == User.Identity.Name
                                      select x).ToList<Teacher>();
-
             teacher[0].resume = Request.Form["Resume"];
             dal.SaveChanges();
             return View("Teacher", teacher[0]);
         }
 
-        
+        public ActionResult ViewCourses()
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            vm.teacher = (from x in dal.teachers
+                          where x.email == User.Identity.Name
+                          select x).ToList<Teacher>()[0];
+            vm.courses = (from x in dal.courses
+                          where x.teacher.email == vm.teacher.email
+                          select x).ToList<Course>();
+            return View(vm);
+        }
+
+        public ActionResult EditBooks()
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            int id = int.Parse(Request.Form["courseID"]);
+            vm.course = (from x in dal.courses
+                         where x.id == id
+                         select x).ToList<Course>()[0];
+            return View(vm);
+        }
+
+        public ActionResult Books()
+        {
+            DataLayer dal = new DataLayer();
+            int id = int.Parse(Request.Form["id"]);
+            Course course = (from x in dal.courses
+                             where x.id == id
+                             select x).ToList<Course>()[0];
+            course.books = Request.Form["Books"];
+            dal.SaveChanges();
+            return RedirectToAction("ViewCourses", "Teacher");
+        }
     }
 }

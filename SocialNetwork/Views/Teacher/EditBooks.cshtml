@@ -1,0 +1,22 @@
+﻿@model SocialNetwork.ViewModels.ViewModel
+
+@{
+    ViewBag.Title = "EditBooks";
+}
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<h2>EditBooks</h2>
+<hr />
+
+@using (Html.BeginForm("Books", "Teacher", FormMethod.Post))
+{
+    <label for="inputBooks" class="col-sm-2 col-form-label">Books</label>
+    <div class="col-sm-10">
+        <textarea rows="10" , id="inputBooks" name="Books">@Model.course.books</textarea>
+    </div>
+    <br />
+    <input type="hidden" name="id" value="@Model.course.id" />
+    <input class="btn btn-outline-primary" id="submit" type="submit" value="Submit" />
+}
+<h4 class="text-danger">@ViewBag.message</h4>

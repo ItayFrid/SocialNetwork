@@ -1,16 +1,13 @@
 ﻿@model SocialNetwork.ViewModels.ViewModel
 
 @{
-    ViewBag.Title = "ShowCourses";
+    ViewBag.Title = "ViewCourses";
 }
 
-<h2>Show Courses</h2>
+<h2>View Courses</h2>
 <hr />
-@if(Model.courses.Count == 0)
-{
-    <h4 class="text-info">No courses in database.</h4>
-}
-@foreach(var course in Model.courses)
+
+@foreach (var course in Model.courses)
 {
     <div class="card alert-info">
         <div class="card-header">
@@ -20,9 +17,6 @@
                 </div>
                 <div class="col">
                     <b>Name:</b> @course.name
-                </div>
-                <div class="col">
-                    <b>By:</b> @course.teacher.name
                 </div>
             </div>
         </div>
@@ -43,16 +37,10 @@
                     <b>Tags:</b> @course.tags
                 </div>
                 <div class="col text-right">
-                    @if (!Model.student.isEnrolled(course.id)) { 
-                    <form action="EnrollCourse" method="post">
-                        <input name="enroll" type="hidden" value="@course.id"/>
-                        <input type="submit" class="btn btn-outline-info" value="Enroll" @course.Enrolled(Model.student.id)/>
+                    <form action="EditBooks" method="post">
+                        <input name="courseID" type="hidden" value="@course.id" />
+                        <input type="submit" class="btn btn-outline-info" value="Edit Books" />
                     </form>
-                    }
-                    else
-                    {
-                        <small class="text-info"><b>Enrolled</b></small>
-                    }
                 </div>
             </div>
         </div>

@@ -30,5 +30,15 @@ namespace SocialNetwork.Models
         public float avgRating { get; set; }
         public string books { get; set; }
         public virtual ICollection<Student> students { get; set; }
+
+        public string Enrolled(string id)
+        {
+            foreach(Student student in students)
+            {
+                if (student.id == id)
+                    return "disabled";
+            }
+            return "";
+        }
     }
 }
