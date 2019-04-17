@@ -55,6 +55,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Controllers\AdminControllerTests.cs" />
+    <Compile Include="Controllers\TeacherControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
