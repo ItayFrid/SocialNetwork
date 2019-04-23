@@ -51,5 +51,27 @@ namespace SocialNetwork.Controllers.Tests
             //Assert
             Assert.IsFalse(answer);
         }
+
+        [TestMethod()]
+        public void UserLoginTest()
+        {
+            // Arrange
+            LoginController controller = new LoginController();
+            // Act
+            ViewResult result = controller.UserLogin() as ViewResult;
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod()]
+        public void UserRegisterTest()
+        {
+            // Arrange
+            LoginController controller = new LoginController();
+            // Act
+            ViewResult result = controller.UserRegister() as ViewResult;
+            // Assert
+            Assert.IsNotNull(result);
+        }
     }
 }
