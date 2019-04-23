@@ -134,7 +134,7 @@ namespace SocialNetwork.Controllers
         }
 
         /*This function compares given username with usernames in database*/
-        private bool userExists(string userName)
+        public bool userExists(string userName)
         {
             DataLayer dal = new DataLayer();
             List<User> users = dal.users.ToList<User>();

@@ -30,14 +30,26 @@ namespace SocialNetwork.Controllers.Tests
             //Arange
             LoginController login = new LoginController();
             //Act
-            User user = new User {
-                email="fitay123@gmail.com",
+            User user = new User
+            {
+                email = "fitay123@gmail.com",
                 password = "123",
                 id = "305360653"
             };
             ViewResult result = login.Login(user) as ViewResult;
             //Assert
             Assert.IsNotNull(result);
+        }
+
+        [TestMethod()]
+        public void userExistsTest()
+        {
+            //Arrange
+            LoginController login = new LoginController();
+            //Act
+            bool answer = login.userExists("fitay123@gmail.com");
+            //Assert
+            Assert.IsFalse(answer);
         }
     }
 }
