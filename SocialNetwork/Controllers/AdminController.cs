@@ -159,6 +159,22 @@ namespace SocialNetwork.Controllers
             dal.SaveChanges();
             return RedirectToAction("AdminComplaints", "Admin");
         }
-        //Test
+        
+        public ActionResult ViewStatistics()
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            vm.teachers = (from x in dal.teachers
+                        select x).ToList<Teacher>();
+            vm.students = (from x in dal.students
+                           select x).ToList<Student>();
+            vm.users = (from x in dal.users
+                           select x).ToList<User>();
+            vm.courses = (from x in dal.courses
+                          select x).ToList<Course>();
+            vm.complaints = (from x in dal.complaints
+                             select x).ToList<Complaint>();
+            return View(vm);
+        }
     }
 }
