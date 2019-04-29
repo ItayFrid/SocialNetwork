@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Search Teacher/Course";
+}
+
+<h2>Search Teacher/Course</h2>
+<hr />
+<div class="row" ng-app="Search">
+    <div class="col-6" ng-controller="teacherSearch">
+        <div>
+
+            <div class="col-auto">
+                <label class="sr-only" for="inlineFormInputGroup">Teacher Name</label>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-search"></i></div>
+                    </div>
+                    <input type="text" ng-model="teacherInput" name="email" class="form-control" id="inlineFormInputGroup" placeholder="Teacher Name" autocomplete="off">
+                </div>
+            </div>
+            <hr />
+            <h4>Teachers</h4>
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+                <tr ng-repeat="i in teachers | searchFor:teacherInput">
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.email }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-6" ng-controller="courseSearch">
+
+        <div class="col-auto">
+            <label class="sr-only" for="inlineFormInputGroup">Course Name</label>
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-search"></i></div>
+                </div>
+                <input type="text" ng-model="courseInput" name="name" class="form-control" id="inlineFormInputGroup" placeholder="Course Name" autocomplete="off">
+            </div>
+        </div>
+        <hr />
+        <h4>Courses</h4>
+        <table class="table">
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Teacher</th>
+            </tr>
+            <tr ng-repeat="i in courses | searchFor:courseInput">
+                <td>{{ i.id }}</td>
+                <td>{{ i.name }}</td>
+                <td>{{ i.teacher }}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    var Search = angular.module('Search', []);
+    Search.controller('teacherSearch', function ($scope, $http) {
+        $http.get('/Student/GetTeachersJson')
+            .then(function (result) {
+                $scope.teachers = result.data;
+            })
+            .catch(function (data) {
+                console.log(data);
+            }); 
+    });
+    Search.controller('courseSearch', function ($scope, $http) {
+        $http.get('/Student/getCoursesJson')
+            .then(function (result) {
+                $scope.courses = result.data;
+            })
+            .catch(function (data) {
+                console.log(data);
+            });
+    });
+    Search.filter('searchFor', function () {
+        return function (arr, searchString) {
+            if (!searchString) {
+                return arr;
+            }
+            var result = [];
+            searchString = searchString.toLowerCase();
+            angular.forEach(arr, function (item) {
+                if (item.name.toLowerCase().indexOf(searchString) !== -1) {
+                    result.push(item);
+                }
+            });
+            return result;
+        };
+    });
+</script>

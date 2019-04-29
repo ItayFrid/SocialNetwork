@@ -1,4 +1,5 @@
-﻿using SocialNetwork.DAL;
+﻿using Newtonsoft.Json;
+using SocialNetwork.DAL;
 using SocialNetwork.Models;
 using SocialNetwork.ViewModels;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace SocialNetwork.Controllers
 {
@@ -82,6 +84,27 @@ namespace SocialNetwork.Controllers
             student.courses.Add(course);
             dal.SaveChanges();
             return RedirectToAction("ShowCourses", "Student");
+        }
+        [AllowAnonymous]
+        public ActionResult Search()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public JsonResult getTeachersJson()
+        {
+            DataLayer dal = new DataLayer();
+            var teachers = (from x in dal.teachers
+                            select new {email = x.email,name = x.name });
+            return Json(teachers, JsonRequestBehavior.AllowGet);
+        }
+        [AllowAnonymous]
+        public JsonResult getCoursesJson()
+        {
+            DataLayer dal = new DataLayer();
+            var courses = (from x in dal.courses
+                           select new {id = x.id, name = x.name, teacher=x.teacher.name });
+            return Json(courses, JsonRequestBehavior.AllowGet);
         }
     }
 }
