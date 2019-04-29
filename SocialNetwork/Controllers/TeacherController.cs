@@ -111,5 +111,36 @@ namespace SocialNetwork.Controllers
             dal.SaveChanges();
             return RedirectToAction("ViewCourses", "Teacher");
         }
+
+        public ActionResult Complaint()
+        {
+            ViewModel vm = new ViewModel();
+            DataLayer dal = new DataLayer();
+            vm.students = (from x in dal.students
+                           where x.role == "Student"
+                           select x).ToList<Student>();
+            vm.teacher = (from x in dal.teachers
+                          where x.email == User.Identity.Name
+                          select x).ToList<Teacher>()[0];
+            Complaint complaint = new Complaint();
+            return View(vm);
+        }
+
+        public ActionResult NewComplaint(Complaint complaint)
+        {
+            DataLayer dal = new DataLayer();
+            User sender = (from x in dal.users
+                           where x.email == User.Identity.Name
+                           select x).ToList<User>()[0];
+            complaint.Sender = sender;
+            string targetEmail = Request.Form["complaint.Target"];
+            User target = (from x in dal.users
+                           where x.email == targetEmail
+                           select x).ToList<User>()[0];
+            complaint.Target = target;
+            dal.complaints.Add(complaint);
+            dal.SaveChanges();
+            return RedirectToAction("Teacher", "Teacher");
+        }
     }
 }
