@@ -43,15 +43,21 @@
                     <b>Tags:</b> @course.tags
                 </div>
                 <div class="col text-right">
-                    @if (!Model.student.isEnrolled(course.id)) { 
-                    <form action="EnrollCourse" method="post">
-                        <input name="enroll" type="hidden" value="@course.id"/>
-                        <input type="submit" class="btn btn-outline-info" value="Enroll" @course.Enrolled(Model.student.id)/>
-                    </form>
+                    @if (!Model.student.isEnrolled(course.id))
+                    {
+                        <form action="EnrollCourse" method="post">
+                            <input name="enroll" type="hidden" value="@course.id" />
+                            <input type="submit" class="btn btn-outline-info" value="Enroll" @course.Enrolled(Model.student.id) />
+                        </form>
                     }
                     else
                     {
                         <small class="text-info"><b>Enrolled</b></small>
+                        using (Html.BeginForm("RatingRegister", "Rating", FormMethod.Post))
+                        {
+                            <input name="inputCourseId" type="hidden" value="@course.id" />
+                            <input type="submit" class="btn btn-outline-info" value="Add Rating"/>
+                        }
                     }
                 </div>
             </div>

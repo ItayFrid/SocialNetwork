@@ -12,6 +12,7 @@ namespace SocialNetwork.Models
         public Course()
         {
             students = new List<Student>();
+            ratings = new List<Rating>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,7 +27,7 @@ namespace SocialNetwork.Models
         [Required]
         [StringLength(255, MinimumLength = 2, ErrorMessage = "Tags must be between 2-255")]
         public string tags { get; set; }
-        public string ratings { get; set; }
+        public virtual ICollection<Rating> ratings { get; set; }
         public float avgRating { get; set; }
         public string books { get; set; }
         public virtual ICollection<Student> students { get; set; }
@@ -39,6 +40,15 @@ namespace SocialNetwork.Models
                     return "disabled";
             }
             return "";
+        }
+
+        public void calcAvg()
+        {
+            float tempAvg = 0;
+            foreach (Rating rating in ratings)
+                tempAvg += rating.rat;
+            tempAvg /= ratings.Count;
+            this.avgRating = tempAvg;
         }
     }
 }

@@ -85,12 +85,12 @@ namespace SocialNetwork.Controllers
             dal.SaveChanges();
             return RedirectToAction("ShowCourses", "Student");
         }
-        [AllowAnonymous]
+
         public ActionResult Search()
         {
             return View();
         }
-        [AllowAnonymous]
+
         public JsonResult getTeachersJson()
         {
             DataLayer dal = new DataLayer();
@@ -98,7 +98,7 @@ namespace SocialNetwork.Controllers
                             select new {email = x.email,name = x.name });
             return Json(teachers, JsonRequestBehavior.AllowGet);
         }
-        [AllowAnonymous]
+
         public JsonResult getCoursesJson()
         {
             DataLayer dal = new DataLayer();

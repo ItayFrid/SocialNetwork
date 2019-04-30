@@ -13,11 +13,8 @@ namespace SocialNetwork.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-        [Required]
-        public int courseId { get; set; }
-        [Required]
-        [EmailAddress]
-        public string studentEmail { get; set; }
+        public virtual Course course { get; set; }
+        public virtual Student student { get; set; }
         [Required]
         [RegularExpression("^(10|[1-9])$", ErrorMessage ="Must be a number between 1-10")]
         public int rat { get; set; }
