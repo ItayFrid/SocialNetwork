@@ -162,6 +162,7 @@ namespace SocialNetwork.Controllers
         
         public ActionResult ViewStatistics()
         {
+            int studentEnrolls = 0;
             DataLayer dal = new DataLayer();
             ViewModel vm = new ViewModel();
             vm.teachers = (from x in dal.teachers
@@ -174,7 +175,40 @@ namespace SocialNetwork.Controllers
                           select x).ToList<Course>();
             vm.complaints = (from x in dal.complaints
                              select x).ToList<Complaint>();
+            vm.messages = (from x in dal.messages
+                             select x).ToList<Message>();
+            foreach (Course course in vm.courses)
+                studentEnrolls += course.students.Count;
+            ViewBag.enrolls = studentEnrolls;
             return View(vm);
+        }
+
+        public ActionResult SendGlobalMessage()
+        {
+            ViewModel vm = new ViewModel();
+            vm.message = new Message();
+            ViewBag.message = "";
+            return View(vm);
+        }
+
+        public ActionResult AddGlobalMessage(Message message)
+        {
+            DataLayer dal = new DataLayer();
+            User admin = (from x in dal.users
+                         where x.email == User.Identity.Name
+                         select x).ToList<User>()[0];
+            List<User> users = (from x in dal.users
+                                where x.email != User.Identity.Name
+                                select x).ToList<User>();
+            if(users.Count==0)
+                return RedirectToAction("SendGlobalMessage", "Admin");
+            foreach(User user in users)
+            {
+                Message tmpMessage = new Message { to=user,from = admin,body = message.body };
+                dal.messages.Add(tmpMessage);
+            }
+            dal.SaveChanges();
+            return RedirectToAction("Admin", "Admin");
         }
     }
 }

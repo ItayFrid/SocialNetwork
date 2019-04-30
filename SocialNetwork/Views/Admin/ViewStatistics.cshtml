@@ -1,21 +1,23 @@
 ﻿@model SocialNetwork.ViewModels.ViewModel
 
 @{
-    ViewBag.Title = "ViewStatistics";
+    ViewBag.Title = "View Statistics";
 }
 @{ 
     int num = @Model.users.Count - @Model.students.Count - @Model.teachers.Count;
 }
-<h2>ViewStatistics</h2>
+<h2>View Statistics</h2>
 <hr />
 <div class="container">
     <h4>Users</h4>
-    Students in system: <span class="text-info"><b>@Model.students.Count</b></span><br />
-    Teachers in system: <span class="text-info"><b>@Model.teachers.Count</b></span><br />
-    Admins in system: <span class="text-info"><b>@num</b></span><br />
-    Total users in system: <span class="text-info"><b>@Model.users.Count</b></span><br />
+    Students: <span class="text-info"><b>@Model.students.Count</b></span><br />
+    Teachers: <span class="text-info"><b>@Model.teachers.Count</b></span><br />
+    Admins: <span class="text-info"><b>@num</b></span><br />
+    Total users: <span class="text-info"><b>@Model.users.Count</b></span><br />
     <hr />
     <h4>Others</h4>
-    Courses in system: <span class="text-info"><b>@Model.courses.Count</b></span><br />
-    Complaints in system: <span class="text-info"><b>@Model.complaints.Count</b></span><br />
+    Courses: <span class="text-info"><b>@Model.courses.Count</b></span><br />
+    Student Enrolls: <span class="text-info"><b>@ViewBag.enrolls</b></span><br />
+    Complaints: <span class="text-info"><b>@Model.complaints.Count</b></span><br />
+    Messages: <span class="text-info"><b>@Model.messages.Count</b></span><br />
 </div>
