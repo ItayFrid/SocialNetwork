@@ -28,5 +28,8 @@ namespace SocialNetwork.ViewModels
 
         public Complaint complaint { get; set; }
         public List<Complaint> complaints { get; set; }
+
+        public Message message { get; set; }
+        public List<Message> messages { get; set; }
     }
 }

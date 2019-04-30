@@ -1,0 +1,33 @@
+﻿@model SocialNetwork.ViewModels.ViewModel
+
+@{
+    ViewBag.Title = "Messages";
+}
+
+<h2>Messages</h2>
+<hr />
+
+<div class="container">
+    @foreach (var message in Model.messages)
+    {
+        <div class="card">
+            <div class="card-header alert alert-primary">
+                <div class="row">
+                    <div class="text-left">
+                        <b>From:</b> @message.from.name [@message.from.id]
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">@message.body</p>
+            </div>
+            <div class="card-footer text-center">
+                <form action="DeleteMessage" method="post">
+                    <input name="delete" type="hidden" value="@message.id" />
+                    <input type="submit" class="btn btn-outline-primary" value="Delete" />
+                </form>
+            </div>
+        </div>
+        <br />
+    }
+</div>

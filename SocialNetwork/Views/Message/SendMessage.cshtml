@@ -1,0 +1,46 @@
+﻿@model SocialNetwork.ViewModels.ViewModel
+
+@{
+    ViewBag.Title = "Send Message";
+}
+
+<h2>Send Message</h2>
+<hr />
+
+@using (Html.BeginForm("AddMessage", "Message", FormMethod.Post))
+{
+    <div class="form-group row">
+        <label for="inputFrom" class="col-sm-2 col-form-label">From</label>
+        <div class="col-sm-10">
+            <input id="inputFrom" class="form-control" type="text" placeholder="@User.Identity.Name" readonly>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputTo" class="col-sm-2 col-form-label">To</label>
+        <div class="col-sm-10">
+            @Html.DropDownListFor(m => m.message.to, new SelectList(Model.users, "email", "name"), new { @class = "form-control", id = "inputTo" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.message.to)</small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputBody" class="col-sm-2 col-form-label">Body</label>
+        <div class="col-sm-10">
+            @Html.TextAreaFor(m => m.message.body, new { @class = "form-control", id = "inputBody" })
+            <small class="text-danger">@Html.ValidationMessageFor(x => x.message.body)</small>
+        </div>
+    </div>
+    <input id="sender" name="@User.Identity.Name" type="hidden" value="@User.Identity.Name" />
+
+    if (Model.users.Count == 0)
+    {
+        <input class="btn btn-outline-primary" id="submit" type="submit" value="Send Message" disabled />
+        <small class="text-danger">No users (except you) in database</small>
+    }
+    else
+    {
+        <input class="btn btn-outline-primary" id="submit" type="submit" value="Send Message" />
+    }
+    <h4 class="text-danger">@ViewBag.message</h4>
+}
