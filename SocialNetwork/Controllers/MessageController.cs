@@ -72,5 +72,14 @@ namespace SocialNetwork.Controllers
             dal.SaveChanges();
             return RedirectToAction("ViewMessages", "Message");
         }
+
+        public JsonResult getMessagesJson()
+        {
+            DataLayer dal = new DataLayer();
+            var messages = (from x in dal.messages
+                            where x.to.email == User.Identity.Name
+                            select new { to = x.to.email,body = x.body});
+            return Json(messages, JsonRequestBehavior.AllowGet);
+        }
     }
 }
