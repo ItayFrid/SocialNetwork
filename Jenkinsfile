@@ -17,7 +17,7 @@ pipeline {
     
    stage('Build'){
           steps{
-               sh "dotnet msbuild SocialNetwork.sln"
+               sh "dotnet build SocialNetwork.sln"
                }
     }
     stage('Run Tests'){
