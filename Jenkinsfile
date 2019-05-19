@@ -17,7 +17,7 @@ pipeline {
     
    stage('Build'){
           steps{
-               sh "dotnet build -t SocialNetwork"
+               sh "dotnet msbuild SocialNetwork.sln -restore"
                }
     }
     stage('Run Tests'){
