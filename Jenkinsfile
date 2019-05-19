@@ -11,7 +11,7 @@ pipeline {
    }
     stage('Dotnet Restore'){
         steps{
-        sh "nuget restore packages.config -PackagesDirectory Packages"
+        sh "dotnet restore"
         }
     }
     
