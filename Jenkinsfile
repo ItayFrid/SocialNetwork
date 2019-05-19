@@ -11,13 +11,13 @@ pipeline {
    }
     stage('Dotnet Restore'){
         steps{
-        sh "dotnet restore --configfile packages.config"
+        sh "dotnet restore"
         }
     }
     
    stage('Build'){
           steps{
-               sh "dotnet build"
+               sh "dotnet build --pull -t SocialNetwork"
                }
     }
     stage('Run Tests'){
