@@ -12,12 +12,13 @@ pipeline {
     stage('Dotnet Restore'){
         steps{
         sh "dotnet restore"
+        sh "dotnet pack --no-build"
         }
     }
     
    stage('Build'){
           steps{
-               sh "dotnet msbuild SocialNetwork.sln -restore"
+               sh "dotnet msbuild SocialNetwork.sln"
                }
     }
     stage('Run Tests'){
