@@ -11,7 +11,7 @@ pipeline {
    }
     stage('Dotnet Restore'){
         steps{
-        sh "dotnet restore --configfile SocialNetwork\packages.config"
+        sh "dotnet restore --configfile SocialNetwork/packages.config"
         }
     }
     
