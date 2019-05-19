@@ -6,13 +6,12 @@ pipeline {
     // Get some code from a GitHub repository
     stage('Git') {
       steps{
-          git clone 'https://github.com/ItayFrid/SocialNetwork.git'
+          git 'https://github.com/ItayFrid/SocialNetwork.git'
       }
    }
     stage('Dotnet Restore'){
         steps{
         sh "dotnet restore"
-        sh "dotnet pack --no-build"
         }
     }
     
