@@ -1046,8 +1046,10 @@
     <Content Include="Views\Message\SendMessage.cshtml" />
     <Content Include="Views\Message\ViewMessages.cshtml" />
     <Content Include="Views\Admin\SendGlobalMessage.cshtml" />
+    <Content Include="Views\Student\ReferenceNewStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Email\" />
     <Folder Include="Views\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,9 @@ using SocialNetwork.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -90,6 +93,30 @@ namespace SocialNetwork.Controllers
         {
             return View();
         }
+        
+        public ActionResult ReferenceNewStudent()
+        {
+            return View();
+        }
+
+        public ActionResult SendReference()
+        {
+            string email = Request.Form["email"];
+            string sender = Request.Form["sender"];
+            string message = Request.Form["message"];
+            var Url = "/Login/UserRegister/";
+            var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, Url);
+            string subject = "Registration Invitation - TeachMe";
+            string body = "<p>" +
+                "You are invited to join TeachMe by <b>" +
+                sender +
+                "</b><br/>please click this" +
+                "<a href='" + link + "'>link</a> to join us. <br/>" +
+                message +
+                "</p>";
+            SendEmail(email, subject, body);
+            return RedirectToAction("Student","Student");
+        }
 
         public JsonResult getTeachersJson()
         {
@@ -105,6 +132,26 @@ namespace SocialNetwork.Controllers
             var courses = (from x in dal.courses
                            select new {id = x.id, name = x.name, teacher=x.teacher.name });
             return Json(courses, JsonRequestBehavior.AllowGet);
+        }
+
+        private void SendEmail(string toEmail, string subject, string body)
+        {
+            string sender = "immunit7@gmail.com";
+            string password = "fitay123";
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
+            {
+                EnableSsl = true,
+                Timeout = 10000,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(sender, password)
+            };
+            MailMessage msg = new MailMessage(sender, toEmail, subject, body)
+            {
+                IsBodyHtml = true,
+                BodyEncoding = UTF8Encoding.UTF8
+            };
+            client.Send(msg);
         }
     }
 }
