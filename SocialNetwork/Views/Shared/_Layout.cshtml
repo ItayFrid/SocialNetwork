@@ -21,7 +21,7 @@
                         <i class="fas fa-home text-white-50"></i>
                         @Html.ActionLink("Home", "Index", "Home", null, new { @class = "text-white-50" })
                     </div>
-                    <span class="badge badge-warning badge-pill">NEW</span>
+                    @*<span class="badge badge-warning badge-pill">NEW</span>*@
                 </li>
                 @if (User.Identity.IsAuthenticated)
                 {
