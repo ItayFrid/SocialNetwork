@@ -9,10 +9,10 @@
     @if (User.Identity.IsAuthenticated)
     {
     <ul class="nav" ng-app="Notification">
-        <li class="nav-item nav-link">
+        @*<li class="nav-item nav-link">
             <a class="" href="#"><i class="far fa-bell text-white-50"></i></a>
             <span class="badge badge-pill badge-danger notification">3</span>
-        </li>
+        </li>*@
         <li class="nav-item nav-link" ng-controller="Messages">
             <a href="@Url.Action("ViewMessages", "Message")"><i class="far fa-envelope text-white-50"></i></a>
             <span ng-if="messages.length!=0" class="badge badge-pill badge-danger notification">{{ messages.length }}</span>

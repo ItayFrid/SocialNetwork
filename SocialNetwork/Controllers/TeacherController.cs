@@ -142,5 +142,40 @@ namespace SocialNetwork.Controllers
             dal.SaveChanges();
             return RedirectToAction("Teacher", "Teacher");
         }
+
+        public ActionResult GiveCourse()
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            vm.teachers = (from x in dal.teachers
+                           where x.email != User.Identity.Name
+                           select x).ToList<Teacher>();
+            vm.courses = (from x in dal.courses
+                          where x.teacher.email == User.Identity.Name
+                          select x).ToList<Course>();
+            return View(vm);
+        }
+
+        public ActionResult ChangeCourseTeacher()
+        {
+            DataLayer dal = new DataLayer();
+            string teacherEmail = Request.Form["teacher.email"];
+            int courseId = Int32.Parse(Request.Form["course.id"]);
+            Teacher teacherGive = (from x in dal.teachers
+                               where x.email == teacherEmail
+                               select x).ToList<Teacher>()[0];
+            Teacher teacher = (from x in dal.teachers
+                               where x.email == User.Identity.Name
+                               select x).ToList<Teacher>()[0];
+            Course course = (from x in dal.courses
+                             where x.id == courseId
+                             select x).ToList<Course>()[0];
+
+            course.teacher = teacherGive;
+            teacher.courses.Remove(course);
+            teacherGive.courses.Add(course);
+            dal.SaveChanges();
+            return RedirectToAction("Teacher", "Teacher");
+        }
     }
 }
