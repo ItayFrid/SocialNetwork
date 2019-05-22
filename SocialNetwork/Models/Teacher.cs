@@ -16,8 +16,10 @@ namespace SocialNetwork.Models
 
         public virtual ICollection<Course> courses { get; set; }
 
-        public float avgRating { get; set; }
-        
+        public int Rating { get; set; }
+
+        public int numRating { get; set; }
+
         public bool authorized { get; set; }
 
         public string resume { get; set; }
@@ -30,5 +32,9 @@ namespace SocialNetwork.Models
                 return "disabled";
         }
 
+        public float AvgRating()
+        {
+            return Rating / numRating;
+        }
     }
 }

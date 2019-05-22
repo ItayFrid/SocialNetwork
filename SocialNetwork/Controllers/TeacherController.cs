@@ -205,5 +205,28 @@ namespace SocialNetwork.Controllers
             dal.SaveChanges();
             return RedirectToAction("ViewCourses", "Teacher");
         }
+
+        public ActionResult TeacherRating()
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            vm.teachers = (from x in dal.teachers
+                           where x.email != User.Identity.Name
+                           select x).ToList<Teacher>();
+            return View(vm);
+        }
+
+        public ActionResult UpdateTeacherRating() {
+            string teacherEmail = Request.Form["teacher"];
+            int value = Int32.Parse(Request.Form["teacherRating"]);
+            DataLayer dal = new DataLayer();
+            Teacher teacher = (from x in dal.teachers
+                               where x.email == teacherEmail
+                               select x).ToList<Teacher>()[0];
+            teacher.Rating += value;
+            teacher.numRating++;
+            dal.SaveChanges();
+            return RedirectToAction("Teacher", "Teacher");
+        }
     }
 }

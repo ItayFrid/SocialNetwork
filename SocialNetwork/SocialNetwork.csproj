@@ -1051,6 +1051,7 @@
     <Content Include="Views\Teacher\GiveCourse.cshtml" />
     <Content Include="Views\Student\Course.cshtml" />
     <Content Include="Views\Teacher\UpdateStudentProgress.cshtml" />
+    <Content Include="Views\Teacher\TeacherRating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Email\" />

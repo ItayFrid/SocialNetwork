@@ -15,7 +15,7 @@
     <li class="list-group-item">
         <a href="@Url.Action("EditResume", "Teacher")">Add/Edit Resume</a>
     </li>
-    <li class="list-group-item">
+    <li class="list-group-item" @Model.isAuthorized()>
         <a href="@Url.Action("ViewCourses", "Teacher")">View Courses</a>
     </li>
     <li class="list-group-item">
@@ -27,8 +27,11 @@
     <li class="list-group-item">
         <a href="@Url.Action("ViewMessages", "Message")">View Messages</a>
     </li>
-    <li class="list-group-item">
+    <li class="list-group-item" @Model.isAuthorized()>
         <a href="@Url.Action("GiveCourse", "Teacher")">Give Course To Teacher</a>
+    </li>
+    <li class="list-group-item" @Model.isAuthorized()>
+        <a href="@Url.Action("TeacherRating", "Teacher")">Rate A Teacher</a>
     </li>
 </ul>
 

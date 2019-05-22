@@ -172,7 +172,8 @@ namespace SocialNetwork.Controllers
                 password = user.password,
                 name = user.name,
                 role = user.role,
-                avgRating = 0,
+                Rating = 0,
+                numRating = 0,
                 id = user.id,
                 authorized = false,
                 resume = ""
