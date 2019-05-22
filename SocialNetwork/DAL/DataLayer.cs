@@ -21,6 +21,7 @@ namespace SocialNetwork.DAL
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Complaint>().ToTable("Complaints");
             modelBuilder.Entity<Message>().ToTable("Messages");
+            modelBuilder.Entity<Progress>().ToTable("Progresses");
             base.OnModelCreating(modelBuilder);
         }
         
@@ -33,5 +34,6 @@ namespace SocialNetwork.DAL
         public DbSet<User> users { get; set; }
         public DbSet<Complaint> complaints { get; set; }
         public DbSet<Message> messages { get; set; }
+        public DbSet<Progress> progresses { get; set; }
     }
 }

@@ -30,6 +30,17 @@
             <p class="card-text">
                 <b>Price:</b> @course.price &#8362;
             </p>
+            @*<p class="card-text">*@
+                <b>Students:</b> <small> (click student's name to update progress) </small>
+                @foreach (var student in course.students)
+                {
+                                 <form method="post" action="UpdateStudentProgress">
+                                     <input type="hidden" name="studentEmail" value="@student.email" />
+                                     <input type="hidden" name="courseId" value="@course.id" />
+                                     <button type="submit" id="progressButton">@student.name</button><span>,</span>
+                                 </form>  
+                }
+            @*</p>*@
         </div>
         <div class="card-footer">
             <div class="row">
@@ -47,3 +58,13 @@
     </div>
     <br />
 }
+
+<style>
+    #progressButton {
+        background: none !important;
+        color: inherit;
+        border: none;
+        padding: 0 !important;
+        font: inherit;
+    }
+</style>

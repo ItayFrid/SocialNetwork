@@ -1,0 +1,23 @@
+﻿@model SocialNetwork.ViewModels.ViewModel
+
+@{
+    ViewBag.Title = "UpdateStudentProgress";
+}
+
+<h2>Update Student Progress</h2>
+<hr />
+<form action="SaveStudentProgress" method="post">
+    <h4>@Model.progress.student.name's Progress:</h4>
+    <div class="form-group">
+        <label for="formControlRange">Progress</label>
+        <input type="range"
+               class="form-control-range"
+               name="studentProgress"
+               id="formControlRange"
+               min="0" max="100"
+               step="5"
+               value="@Model.progress.getProgress()">
+    </div>
+    <input type="hidden" name="progressId" value="@Model.progress.id" />
+    <button type="submit" class="btn btn-outline-primary">Change Progress</button>
+</form>

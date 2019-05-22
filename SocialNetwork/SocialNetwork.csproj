@@ -150,6 +150,7 @@
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Enroll.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Progress.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -1048,6 +1049,8 @@
     <Content Include="Views\Admin\SendGlobalMessage.cshtml" />
     <Content Include="Views\Student\ReferenceNewStudent.cshtml" />
     <Content Include="Views\Teacher\GiveCourse.cshtml" />
+    <Content Include="Views\Student\Course.cshtml" />
+    <Content Include="Views\Teacher\UpdateStudentProgress.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Email\" />

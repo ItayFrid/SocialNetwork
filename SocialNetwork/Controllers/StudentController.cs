@@ -85,6 +85,11 @@ namespace SocialNetwork.Controllers
                              select x).ToList<Course>()[0];
             course.students.Add(student);
             student.courses.Add(course);
+            Progress studentProg = new Progress();
+            studentProg.student = student;
+            studentProg.course = course;
+            studentProg.prog = 0;
+            course.studentProgress.Add(studentProg);
             dal.SaveChanges();
             return RedirectToAction("ShowCourses", "Student");
         }
@@ -116,6 +121,19 @@ namespace SocialNetwork.Controllers
                 "</p>";
             SendEmail(email, subject, body);
             return RedirectToAction("Student","Student");
+        }
+
+        public ActionResult Course(int id)
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            vm.course = (from x in dal.courses
+                             where x.id == id
+                             select x).ToList<Course>()[0];
+            vm.student = (from x in dal.students
+                          where x.email == User.Identity.Name
+                          select x).ToList<Student>()[0];
+            return View(vm);
         }
 
         public JsonResult getTeachersJson()

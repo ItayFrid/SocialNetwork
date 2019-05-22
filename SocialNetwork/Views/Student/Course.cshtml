@@ -1,0 +1,67 @@
+﻿@model SocialNetwork.ViewModels.ViewModel
+
+@{
+    ViewBag.Title = "Course";
+}
+
+<h2>Course</h2>
+<hr />
+<div class="card alert-info">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-1">
+                <b>#@Model.course.id</b>
+            </div>
+            <div class="col">
+                <b>Name:</b> @Model.course.name
+            </div>
+            <div class="col">
+                <b>By:</b> @Model.course.teacher.name
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+            <b>Rating:</b> @Model.course.avgRating
+        </p>
+        <p class="card-text">
+            <b>Books:</b> @Model.course.books
+        </p>
+        <p class="card-text">
+            <b>Price:</b> @Model.course.price &#8362;
+        </p>
+        @if (Model.course.getProgress(User.Identity.Name)!=null) { 
+            <p class="card-text">
+                <b>@Model.student.name's Progress:</b>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-info text-dark" role="progressbar" aria-valuenow="@Model.course.getProgress(User.Identity.Name).getProgress()" aria-valuemin="0" aria-valuemax="100" style="width: @Model.course.getProgress(User.Identity.Name).getProgress()%">@Model.course.getProgress(User.Identity.Name).getProgress()%</div>
+                </div>
+            </p>
+        }
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col">
+                <b>Tags:</b> @Model.course.tags
+            </div>
+            <div class="col text-right">
+                @if (!Model.student.isEnrolled(Model.course.id))
+                {
+                    <form action="EnrollCourse" method="post">
+                        <input name="enroll" type="hidden" value="@Model.course.id" />
+                        <input type="submit" class="btn btn-outline-info" value="Enroll" @Model.course.Enrolled(Model.student.id) />
+                    </form>
+                }
+                else
+                {
+                    <small class="text-info"><b>Enrolled</b></small>
+                    using (Html.BeginForm("RatingRegister", "Rating", FormMethod.Post))
+                    {
+                        <input name="inputCourseId" type="hidden" value="@Model.course.id" />
+                        <input type="submit" class="btn btn-outline-info" value="Add Rating" />
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

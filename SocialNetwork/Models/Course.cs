@@ -13,6 +13,7 @@ namespace SocialNetwork.Models
         {
             students = new List<Student>();
             ratings = new List<Rating>();
+            studentProgress = new List<Progress>();
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -31,7 +32,7 @@ namespace SocialNetwork.Models
         public float avgRating { get; set; }
         public string books { get; set; }
         public virtual ICollection<Student> students { get; set; }
-
+        public virtual ICollection<Progress> studentProgress { get; set; }
         public string Enrolled(string id)
         {
             foreach(Student student in students)
@@ -49,6 +50,15 @@ namespace SocialNetwork.Models
                 tempAvg += rating.rat;
             tempAvg /= ratings.Count;
             this.avgRating = tempAvg;
+        }
+        public Progress getProgress(string email)
+        {
+            foreach(Progress progress in studentProgress)
+            {
+                if (progress.student.email == email)
+                    return progress;
+            }
+            return null;
         }
     }
 }

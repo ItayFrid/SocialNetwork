@@ -28,6 +28,11 @@ namespace SocialNetwork
                 url: "",
                 defaults: new { controller = "Admin", action = "Admin", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Course",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Student", action = "Course", id = 1 }
+            );
         }
     }
 }

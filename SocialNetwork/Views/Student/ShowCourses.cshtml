@@ -16,7 +16,14 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-sm-1">
-                    <b>#@course.id</b>
+                    @if (Model.student.isEnrolled(course.id))
+                    {
+                        <a href='@Url.Action("Course","Student",new RouteValueDictionary(new {id = course.id }))'><b>#@course.id</b></a>
+                    }
+                    else
+                    {
+                        <b>#@course.id</b>
+                    }
                 </div>
                 <div class="col">
                     <b>Name:</b> @course.name

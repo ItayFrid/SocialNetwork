@@ -177,5 +177,33 @@ namespace SocialNetwork.Controllers
             dal.SaveChanges();
             return RedirectToAction("Teacher", "Teacher");
         }
+
+        public ActionResult UpdateStudentProgress()
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            string studentEmail = Request.Form["studentEmail"];
+            int courseId = Int32.Parse(Request.Form["courseId"]);
+            vm.course = (from x in dal.courses
+                         where x.id == courseId
+                         select x).ToList<Course>()[0];
+            foreach (Progress progress in vm.course.studentProgress)
+                if (progress.student.email == studentEmail)
+                    vm.progress = progress;
+            return View(vm);
+        }
+
+        public ActionResult SaveStudentProgress()
+        {
+            int progressId = Int32.Parse(Request.Form["progressId"]);
+            int value = Int32.Parse(Request.Form["studentProgress"]);
+            DataLayer dal = new DataLayer();
+            Progress progress = (from x in dal.progresses
+                                 where x.id == progressId
+                                 select x).ToList<Progress>()[0];
+            progress.prog = value;
+            dal.SaveChanges();
+            return RedirectToAction("ViewCourses", "Teacher");
+        }
     }
 }

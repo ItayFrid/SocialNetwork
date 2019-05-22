@@ -31,5 +31,8 @@ namespace SocialNetwork.ViewModels
 
         public Message message { get; set; }
         public List<Message> messages { get; set; }
+
+        public Progress progress { get; set; }
+        public List<Progress> progresses { get; set; }
     }
 }
