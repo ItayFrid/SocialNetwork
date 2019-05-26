@@ -1,5 +1,6 @@
-﻿var Search = angular.module('Search', []);
-Search.controller('teacherSearch', function ($scope, $http) {
+﻿
+var MainApp = angular.module('MainApp', []);
+MainApp.controller('teacherSearch', function ($scope, $http) {
     $http.get('/Student/GetTeachersJson')
         .then(function (result) {
             $scope.teachers = result.data;
@@ -8,7 +9,7 @@ Search.controller('teacherSearch', function ($scope, $http) {
             console.log(data);
         });
 });
-Search.controller('courseSearch', function ($scope, $http) {
+MainApp.controller('courseSearch', function ($scope, $http) {
     $http.get('/Student/getCoursesJson')
         .then(function (result) {
             $scope.courses = result.data;
@@ -17,7 +18,7 @@ Search.controller('courseSearch', function ($scope, $http) {
             console.log(data);
         });
 });
-Search.filter('searchFor', function () {
+MainApp.filter('searchFor', function () {
     return function (arr, searchString) {
         if (!searchString) {
             return arr;
@@ -33,8 +34,7 @@ Search.filter('searchFor', function () {
     };
 });
 
-var Notification = angular.module('Notification', []);
-Notification.controller('Messages', function ($scope, $http) {
+MainApp.controller('Messages', function ($scope, $http) {
     $http.get('/Message/getMessagesJson')
         .then(function (result) {
             $scope.messages = result.data;

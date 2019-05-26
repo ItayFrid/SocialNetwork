@@ -18,7 +18,8 @@ namespace SocialNetwork.Models
         public virtual Course course { get; set; }
         [RegularExpression("^([0-9]|[1-9][0-9]|100)$", ErrorMessage = "Must be a number between 0-100")]
         public int prog { get; set; }
-        
+
+        public int grade { get; set; }
         public int getProgress()
         {
             return this.prog;

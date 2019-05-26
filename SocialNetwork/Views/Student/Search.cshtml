@@ -3,10 +3,9 @@
 }
 <h2>Search Teacher/Course</h2>
 <hr />
-<div class="row" ng-app="Search">
+<div class="row" id="SearchApp">
     <div class="col-6" ng-controller="teacherSearch">
         <div>
-
             <div class="col-auto">
                 <label class="sr-only" for="inlineFormInputGroup">Teacher Name</label>
                 <div class="input-group mb-2">
@@ -57,41 +56,3 @@
         </table>
     </div>
 </div>
-@*<script src="~/Scripts/angular.min.js"></script>
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script>
-    var Search = angular.module('Search', []);
-    Search.controller('teacherSearch', function ($scope, $http) {
-        $http.get('/Student/GetTeachersJson')
-            .then(function (result) {
-                $scope.teachers = result.data;
-            })
-            .catch(function (data) {
-                console.log(data);
-            }); 
-    });
-    Search.controller('courseSearch', function ($scope, $http) {
-        $http.get('/Student/getCoursesJson')
-            .then(function (result) {
-                $scope.courses = result.data;
-            })
-            .catch(function (data) {
-                console.log(data);
-            });
-    });
-    Search.filter('searchFor', function () {
-        return function (arr, searchString) {
-            if (!searchString) {
-                return arr;
-            }
-            var result = [];
-            searchString = searchString.toLowerCase();
-            angular.forEach(arr, function (item) {
-                if (item.name.toLowerCase().indexOf(searchString) !== -1) {
-                    result.push(item);
-                }
-            });
-            return result;
-        };
-    });
-</script>*@

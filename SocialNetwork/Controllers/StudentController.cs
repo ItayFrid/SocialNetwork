@@ -89,6 +89,7 @@ namespace SocialNetwork.Controllers
             studentProg.student = student;
             studentProg.course = course;
             studentProg.prog = 0;
+            studentProg.grade = 0;
             course.studentProgress.Add(studentProg);
             dal.SaveChanges();
             return RedirectToAction("ShowCourses", "Student");
@@ -134,6 +135,34 @@ namespace SocialNetwork.Controllers
                           where x.email == User.Identity.Name
                           select x).ToList<Student>()[0];
             return View(vm);
+        }
+
+        public ActionResult StudentGrade()
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            int courseId = Int32.Parse(Request.Form["courseId"]);
+            string studentEmail = User.Identity.Name;
+            vm.course = (from x in dal.courses
+                         where x.id == courseId
+                         select x).ToList<Course>()[0];
+            vm.progress = vm.course.getProgress(studentEmail);
+            return View(vm);
+        }
+        public ActionResult UpdateStudentGrade()
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            int courseId = Int32.Parse(Request.Form["courseId"]);
+            int grade = Int32.Parse(Request.Form["grade"]);
+            string studentEmail = User.Identity.Name;
+            vm.course = (from x in dal.courses
+                         where x.id == courseId
+                         select x).ToList<Course>()[0];
+            vm.progress = vm.course.getProgress(studentEmail);
+            vm.progress.grade = grade;
+            dal.SaveChanges();
+            return RedirectToAction("Student", "Student");
         }
 
         public JsonResult getTeachersJson()

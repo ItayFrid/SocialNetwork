@@ -30,7 +30,11 @@
         <p class="card-text">
             <b>Price:</b> @Model.course.price &#8362;
         </p>
-        @if (Model.course.getProgress(User.Identity.Name)!=null) { 
+        @if (Model.course.getProgress(User.Identity.Name) != null)
+        {
+            <p class="card-text">
+                <b>Grade:</b> @Model.course.getProgress(User.Identity.Name).grade
+            </p>
             <p class="card-text">
                 <b>@Model.student.name's Progress:</b>
                 <div class="progress">
@@ -55,11 +59,22 @@
                 else
                 {
                     <small class="text-info"><b>Enrolled</b></small>
-                    using (Html.BeginForm("RatingRegister", "Rating", FormMethod.Post))
-                    {
-                        <input name="inputCourseId" type="hidden" value="@Model.course.id" />
-                        <input type="submit" class="btn btn-outline-info" value="Add Rating" />
-                    }
+                    <div class="row">
+                        <div class="col">
+                            @using (Html.BeginForm("RatingRegister", "Rating", FormMethod.Post))
+                            {
+                                <input name="inputCourseId" type="hidden" value="@Model.course.id" />
+                                <input type="submit" class="btn btn-outline-info" value="Add Rating" />
+                            }
+                        </div>
+                        <div class="col">
+                            @using (Html.BeginForm("StudentGrade", "Student", FormMethod.Post))
+                            {
+                                <input name="courseId" type="hidden" value="@Model.course.id" />
+                                <input type="submit" class="btn btn-outline-info" value="Update Grade" />
+                            }
+                        </div>
+                    </div>
                 }
             </div>
         </div>

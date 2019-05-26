@@ -43,6 +43,7 @@
             <p class="card-text">
                 <b>Price:</b> @course.price &#8362;
             </p>
+
         </div>
         <div class="card-footer">
             <div class="row">
@@ -63,7 +64,7 @@
                         using (Html.BeginForm("RatingRegister", "Rating", FormMethod.Post))
                         {
                             <input name="inputCourseId" type="hidden" value="@course.id" />
-                            <input type="submit" class="btn btn-outline-info" value="Add Rating"/>
+                            <input type="submit" class="btn btn-outline-info" value="Add Rating" />
                         }
                     }
                 </div>
