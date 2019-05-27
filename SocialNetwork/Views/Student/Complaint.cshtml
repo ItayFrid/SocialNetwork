@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "Complaint";
 }
-
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 <h2>Complaint</h2>
 <hr />
 @using (Html.BeginForm("NewComplaint", "Student", FormMethod.Post))
@@ -31,10 +33,10 @@
         </div>
     </div>
     <input id="sender" name="@User.Identity.Name" type="hidden" value="@User.Identity.Name" />
-    
+
     if (Model.teachers.Count == 0)
     {
-        <input class="btn btn-outline-primary" id="submit" type="submit" value="Add Complaint" disabled/>
+        <input class="btn btn-outline-primary" id="submit" type="submit" value="Add Complaint" disabled />
         <small class="text-danger">No teachers in database</small>
     }
     else

@@ -34,7 +34,10 @@ namespace SocialNetwork.Models
 
         public float AvgRating()
         {
-            return Rating / numRating;
+            if (numRating != 0)
+                return Rating / numRating;
+            else
+                return 0;
         }
     }
 }

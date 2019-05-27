@@ -1,0 +1,27 @@
+﻿@model SocialNetwork.ViewModels.ViewModel
+
+@{
+                /**/
+
+                ViewBag.Title = "OurTeachers";
+}
+
+<h2>Our Teachers</h2>
+<hr />
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Name</th>
+            <th>Number Of Courses</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    @foreach (var teacher in Model.teachers)
+    {
+        <tr>
+            <td>@teacher.name</td>
+            <td>@teacher.courses.Count</td>
+            <td>@teacher.AvgRating()</td>
+        </tr>
+    }
+</table>

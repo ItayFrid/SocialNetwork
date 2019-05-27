@@ -1053,6 +1053,7 @@
     <Content Include="Views\Teacher\UpdateStudentProgress.cshtml" />
     <Content Include="Views\Teacher\TeacherRating.cshtml" />
     <Content Include="Views\Student\StudentGrade.cshtml" />
+    <Content Include="Views\Home\OurTeachers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Email\" />

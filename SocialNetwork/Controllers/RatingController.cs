@@ -51,6 +51,9 @@ namespace SocialNetwork.Controllers
                 rating.course.ratings.Add(rating);
                 rating.course.calcAvg();
                 dal.ratings.Add(rating);
+                Teacher teacher = rating.course.teacher;
+                teacher.Rating += rating.rat;
+                teacher.numRating++;
 				dal.SaveChanges();
 				ViewBag.message = "Rating was submitted succesfully.";
                 return RedirectToAction("ShowCourses", "Student");

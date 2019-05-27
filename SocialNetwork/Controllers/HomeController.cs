@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SocialNetwork.DAL;
+using SocialNetwork.Models;
+using SocialNetwork.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,18 +16,12 @@ namespace SocialNetwork.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult OurTeachers()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            vm.teachers = dal.teachers.ToList<Teacher>();
+            return View(vm);
         }
         
     }
