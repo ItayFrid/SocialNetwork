@@ -33,6 +33,8 @@ namespace SocialNetwork.Models
         public string books { get; set; }
         public virtual ICollection<Student> students { get; set; }
         public virtual ICollection<Progress> studentProgress { get; set; }
+        public string AssistantEmail { get; set; }
+        public bool AssistantAccept { get; set; }
         public string Enrolled(string id)
         {
             foreach(Student student in students)

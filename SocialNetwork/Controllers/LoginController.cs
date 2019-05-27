@@ -94,7 +94,19 @@ namespace SocialNetwork.Controllers
         {
             DataLayer dal = new DataLayer();
             Encryption enc = new Encryption();
-
+            if(dal.users.ToList<User>().Count == 0)
+            {
+                User root = new User
+                {
+                    id = "111111111",
+                    email = "admin@gmail.com",
+                    password = enc.CreateHash("123"),
+                    name = "admin",
+                    role = "Admin",
+                    blocked = false
+                };
+                dal.users.Add(root);
+            }
             if (ModelState.IsValid)
             {
                 string hashedPassword = enc.CreateHash(user.password);      //Encrypting user's password

@@ -25,7 +25,7 @@ namespace SocialNetwork.Controllers
 
             return View();
         }
-        [AllowAnonymous]
+
         public ActionResult AdminRegister()
         {
             return View();

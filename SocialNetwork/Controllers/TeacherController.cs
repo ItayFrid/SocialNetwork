@@ -47,7 +47,8 @@ namespace SocialNetwork.Controllers
             newCourse.ratings = null;
             newCourse.avgRating = 0;
             newCourse.teacher = teacher[0];
-
+            newCourse.AssistantEmail = "";
+            newCourse.AssistantAccept = false;
             //Updating database
             teacher[0].courses.Add(newCourse);
             dal.courses.Add(newCourse);
@@ -227,6 +228,17 @@ namespace SocialNetwork.Controllers
             teacher.numRating++;
             dal.SaveChanges();
             return RedirectToAction("Teacher", "Teacher");
+        }
+
+        public ActionResult ApproveAssistant(int id)
+        {
+            DataLayer dal = new DataLayer();
+            Course course = (from x in dal.courses
+                             where x.id == id
+                             select x).ToList<Course>()[0];
+            course.AssistantAccept = true;
+            dal.SaveChanges();
+            return RedirectToAction("ViewCourses", "Teacher");
         }
     }
 }

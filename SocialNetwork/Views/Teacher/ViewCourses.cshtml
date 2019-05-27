@@ -30,6 +30,22 @@
             <p class="card-text">
                 <b>Price:</b> @course.price &#8362;
             </p>
+
+            <p class="card-text">
+                <b>Assistant:</b>
+                @if (course.AssistantEmail != "")
+                {
+                    <span>@course.AssistantEmail </span>
+                    if (!course.AssistantAccept)
+                    {
+                        <a href="@Url.Action("ApproveAssistant", "Teacher", new RouteValueDictionary(new { id = course.id }))">[Approve]</a>
+                    }
+                }
+                else
+                {
+                    <span>No Assistant</span>
+                }
+            </p>
             @*<p class="card-text">*@
                 <b>Students:</b> <small> (click student's name to update progress) </small>
                 @foreach (var student in course.students)

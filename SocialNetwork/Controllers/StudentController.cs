@@ -165,6 +165,19 @@ namespace SocialNetwork.Controllers
             return RedirectToAction("Student", "Student");
         }
 
+        public ActionResult RegisterAssistant()
+        {
+            DataLayer dal = new DataLayer();
+            int courseId = Int32.Parse(Request.Form["courseId"]);
+            string studentEmail = Request.Form["assistantEmail"];
+            Course course = (from x in dal.courses
+                             where x.id == courseId
+                             select x).ToList<Course>()[0];
+            course.AssistantEmail = studentEmail;
+            dal.SaveChanges();
+            return RedirectToAction("ShowCourses", "Student");
+        }
+
         public JsonResult getTeachersJson()
         {
             DataLayer dal = new DataLayer();

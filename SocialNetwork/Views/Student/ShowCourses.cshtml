@@ -44,7 +44,30 @@
                 <b>Price:</b> @course.price &#8362;
             </p>
 
-        </div>
+
+            @if (Model.student.isEnrolled(course.id) && course.AssistantEmail == "")
+            {
+            <form action="RegisterAssistant" method="post">
+                <input type="hidden" name="assistantEmail" value="@User.Identity.Name" />
+                <input type="hidden" name="courseId"       value="@course.id" />
+                <input type="submit" class="btn btn-outline-info" value="Apply Assistant" />
+            </form>
+            }
+            else if (course.AssistantEmail != "")
+            {
+                <p class="card-text">
+                    <b>Assistant:</b> @course.AssistantEmail @if (!course.AssistantAccept) { <span>[Pending]</span>}
+                </p>
+            }
+            else
+            {
+                <p class="card-text">
+                    <b>Assistant: </b> No Assistant
+                </p>
+            }
+
+
+            </div>
         <div class="card-footer">
             <div class="row">
                 <div class="col">
