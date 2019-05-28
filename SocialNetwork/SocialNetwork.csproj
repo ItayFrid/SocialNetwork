@@ -1054,6 +1054,7 @@
     <Content Include="Views\Teacher\TeacherRating.cshtml" />
     <Content Include="Views\Student\StudentGrade.cshtml" />
     <Content Include="Views\Home\OurTeachers.cshtml" />
+    <Content Include="Views\Admin\FilterSpam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Email\" />

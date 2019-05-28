@@ -46,6 +46,7 @@ namespace SocialNetwork.Controllers
                            where x.email == toEmail
                            select x).ToList<User>()[0];
             message.to = to;
+            message.spam = false;
             dal.messages.Add(message);
             dal.SaveChanges();
             return RedirectToAction("ViewMessages", "Message");
@@ -77,7 +78,7 @@ namespace SocialNetwork.Controllers
         {
             DataLayer dal = new DataLayer();
             var messages = (from x in dal.messages
-                            where x.to.email == User.Identity.Name
+                            where x.to.email == User.Identity.Name && x.spam == false
                             select new { to = x.to.email,body = x.body});
             return Json(messages, JsonRequestBehavior.AllowGet);
         }

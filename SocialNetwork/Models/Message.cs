@@ -16,5 +16,6 @@ namespace SocialNetwork.Models
         public virtual User to { get; set; }
         [Required]
         public string body { get; set; }
+        public bool spam { get; set; }
     }
 }

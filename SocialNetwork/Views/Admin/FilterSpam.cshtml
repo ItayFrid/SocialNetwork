@@ -1,0 +1,69 @@
+﻿@model SocialNetwork.ViewModels.ViewModel
+
+@{
+    ViewBag.Title = "FilterSpam";
+}
+
+<h2>Filter Spam Messages</h2>
+<hr />
+<div class="container">
+    <h4 class="text-center">Messages</h4>
+    @foreach (var message in Model.messages)
+    {
+        if (!message.spam)
+        {
+            <div class="card">
+                <div class="card-header alert alert-primary">
+                    <div class="row">
+                        <div class="text-left col">
+                            <b>From:</b> @message.from.name [@message.from.id]
+                        </div>
+                        <div class="text-left col">
+                            <b>To:</b> @message.to.name [@message.to.id]
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">@message.body</p>
+                </div>
+                <div class="card-footer text-center">
+                    <form action="FilterMessage" method="post">
+                        <input name="messageId" type="hidden" value="@message.id" />
+                        <input type="submit" class="btn btn-outline-primary" value="Mark As Spam" />
+                    </form>
+                </div>
+            </div>
+            <br />
+        }
+    }
+    <h4 class="text-center">Spam Messages</h4>
+    @foreach (var message in Model.messages)
+    {
+        if (message.spam)
+        {
+            <div class="card">
+                <div class="card-header alert alert-warning">
+                    <div class="row">
+                        <div class="text-left col">
+                            <b>From:</b> @message.from.name [@message.from.id]
+                        </div>
+                        <div class="text-left col">
+                            <b>To:</b> @message.to.name [@message.to.id]
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">@message.body</p>
+                </div>
+                <div class="card-footer text-center">
+                    <form action="FilterMessage" method="post">
+                        <input name="messageId" type="hidden" value="@message.id" />
+                        <input type="submit" class="btn btn-outline-warning" value="Unmark As Spam" />
+                    </form>
+                </div>
+            </div>
+            <br />
+        }
+    }
+
+</div>

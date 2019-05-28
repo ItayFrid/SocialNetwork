@@ -210,5 +210,27 @@ namespace SocialNetwork.Controllers
             dal.SaveChanges();
             return RedirectToAction("Admin", "Admin");
         }
+
+        public ActionResult FilterSpam()
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            vm.messages = (from x in dal.messages
+                           where x.@from.role !="Admin"
+                           select x).ToList<Message>();
+            return View(vm);
+        }
+
+        public ActionResult FilterMessage()
+        {
+            DataLayer dal = new DataLayer();
+            int messageId = Int32.Parse(Request.Form["messageId"]);
+            Message message = (from x in dal.messages
+                               where x.id == messageId
+                               select x).ToList<Message>()[0];
+            message.spam = !message.spam;
+            dal.SaveChanges();
+            return RedirectToAction("FilterSpam", "Admin");
+        }
     }
 }
