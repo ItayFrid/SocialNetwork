@@ -240,5 +240,17 @@ namespace SocialNetwork.Controllers
             dal.SaveChanges();
             return RedirectToAction("ViewCourses", "Teacher");
         }
+
+        public ActionResult ChangeMobility()
+        {
+            string teacherEmail = User.Identity.Name;
+            DataLayer dal = new DataLayer();
+            Teacher teacher = (from x in dal.teachers
+                               where x.email == teacherEmail
+                               select x).ToList<Teacher>()[0];
+            teacher.mobile = !teacher.mobile;
+            dal.SaveChanges();
+            return RedirectToAction("Teacher","Teacher");
+        }
     }
 }

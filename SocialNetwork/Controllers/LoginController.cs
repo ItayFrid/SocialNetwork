@@ -188,8 +188,8 @@ namespace SocialNetwork.Controllers
                 numRating = 0,
                 id = user.id,
                 authorized = false,
-                resume = ""
-
+                resume = "",
+                mobile = false
 			};
 			return teacher;
 		}

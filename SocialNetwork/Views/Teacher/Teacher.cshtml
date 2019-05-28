@@ -33,6 +33,9 @@
     <li class="list-group-item" @Model.isAuthorized()>
         <a href="@Url.Action("TeacherRating", "Teacher")">Rate A Teacher</a>
     </li>
+    <li class="list-group-item">
+        [@Model.isMobile()]<br /><a href="@Url.Action("ChangeMobility", "Teacher")">Change Mobility</a>
+    </li>
 </ul>
 
 <br />

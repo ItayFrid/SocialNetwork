@@ -24,6 +24,7 @@ namespace SocialNetwork.Models
 
         public string resume { get; set; }
 
+        public bool mobile { get; set; }
         public string isAuthorized()
         {
             if (authorized)
@@ -38,6 +39,14 @@ namespace SocialNetwork.Models
                 return Rating / numRating;
             else
                 return 0;
+        }
+
+        public string isMobile()
+        {
+            if (mobile)
+                return "Mobile";
+            else
+                return "Not Mobile";
         }
     }
 }
