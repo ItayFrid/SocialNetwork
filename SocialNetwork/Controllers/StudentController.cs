@@ -22,6 +22,7 @@ namespace SocialNetwork.Controllers
         {
             return View();
         }
+
         public ActionResult Student()
         {
             DataLayer dal = new DataLayer();
@@ -73,6 +74,7 @@ namespace SocialNetwork.Controllers
                           select x).ToList<Student>()[0];            
             return View(vm);
         }
+
         public ActionResult EnrollCourse()
         {
             DataLayer dal = new DataLayer();
@@ -149,6 +151,7 @@ namespace SocialNetwork.Controllers
             vm.progress = vm.course.getProgress(studentEmail);
             return View(vm);
         }
+
         public ActionResult UpdateStudentGrade()
         {
             DataLayer dal = new DataLayer();

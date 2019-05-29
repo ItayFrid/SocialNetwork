@@ -14,7 +14,6 @@ namespace SocialNetwork.DAL
         {
             base.OnModelCreating(modelBuilder);
 			modelBuilder.Entity<Course>().ToTable("Courses").HasMany(x => x.students);
-			//modelBuilder.Entity<Enroll>().ToTable("Enrolls");
 			modelBuilder.Entity<Rating>().ToTable("Ratings");
 			modelBuilder.Entity<Student>().ToTable("Students").HasMany(x =>x.courses);
             modelBuilder.Entity<Teacher>().ToTable("Teachers").HasMany(x => x.courses);
@@ -22,6 +21,7 @@ namespace SocialNetwork.DAL
             modelBuilder.Entity<Complaint>().ToTable("Complaints");
             modelBuilder.Entity<Message>().ToTable("Messages");
             modelBuilder.Entity<Progress>().ToTable("Progresses");
+            modelBuilder.Entity<Post>().ToTable("Posts");
             base.OnModelCreating(modelBuilder);
         }
         
@@ -35,5 +35,6 @@ namespace SocialNetwork.DAL
         public DbSet<Complaint> complaints { get; set; }
         public DbSet<Message> messages { get; set; }
         public DbSet<Progress> progresses { get; set; }
+        public DbSet<Post> posts { get; set; }
     }
 }

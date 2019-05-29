@@ -25,6 +25,9 @@ namespace SocialNetwork.Models
         public string resume { get; set; }
 
         public bool mobile { get; set; }
+
+        public bool isPromoted { get; set; }
+
         public string isAuthorized()
         {
             if (authorized)

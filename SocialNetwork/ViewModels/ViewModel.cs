@@ -34,5 +34,8 @@ namespace SocialNetwork.ViewModels
 
         public Progress progress { get; set; }
         public List<Progress> progresses { get; set; }
+
+        public Post post { get; set; }
+        public List<Post> posts { get; set; }
     }
 }

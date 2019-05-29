@@ -156,9 +156,7 @@ namespace SocialNetwork.Controllers
             return false;
         }
 
-		/**
-		 * this function Creates a student from user 
-		 **/
+		/*this function Creates a student from user*/
 		private Student createStudent(User user)
 		{
             Student student = new Student
@@ -173,9 +171,7 @@ namespace SocialNetwork.Controllers
 			return student;
 		}
 
-		/**
-		 * this function Creates a teacher from user 
-		 **/
+		/*this function Creates a teacher from user*/
 		private Teacher createTeacher(User user)
 		{
             Teacher teacher = new Teacher
@@ -189,8 +185,9 @@ namespace SocialNetwork.Controllers
                 id = user.id,
                 authorized = false,
                 resume = "",
-                mobile = false
-			};
+                mobile = false,
+                isPromoted = false
+            };
 			return teacher;
 		}
 	}

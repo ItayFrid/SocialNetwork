@@ -1,0 +1,20 @@
+﻿@model SocialNetwork.ViewModels.ViewModel
+
+@{
+    ViewBag.Title = "PromoteTeacher";
+}
+
+<h2>Promote Teacher</h2> <small>Click Teacher Name To Promote</small>
+<hr />
+<div class="container">
+    @foreach(var teacher in Model.teachers)
+    {
+        <a href='@Url.Action("Promote", "Admin",
+                            new RouteValueDictionary(new { email = teacher.email }))'>
+            @teacher.name
+        </a>
+
+        <span class="text-success"> [@teacher.AvgRating()]</span>
+        <br />
+    }
+</div>

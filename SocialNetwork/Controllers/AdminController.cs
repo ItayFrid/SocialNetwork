@@ -59,7 +59,6 @@ namespace SocialNetwork.Controllers
             return RedirectToAction("Admin");
         }
 
-
         public ActionResult Login(User user)
         {
 
@@ -97,6 +96,7 @@ namespace SocialNetwork.Controllers
                 ViewBag.UserLoginMessage = "Incorrect Username/password";
             return View("AdminLogin", user);
         }
+
         public ActionResult BlockUser()
         {
             DataLayer dal = new DataLayer();
@@ -231,6 +231,36 @@ namespace SocialNetwork.Controllers
             message.spam = !message.spam;
             dal.SaveChanges();
             return RedirectToAction("FilterSpam", "Admin");
+        }
+
+        public ActionResult PromoteTeacher()
+        {
+            DataLayer dal = new DataLayer();
+            ViewModel vm = new ViewModel();
+            vm.teachers = (from x in dal.teachers
+                           select x).ToList<Teacher>();
+            List<Teacher> FilteredTeachers = new List<Teacher>();
+            foreach(Teacher teacher in vm.teachers)
+                if (teacher.AvgRating() > 7 && !teacher.isPromoted)
+                    FilteredTeachers.Add(teacher);
+            vm.teachers = FilteredTeachers;
+            return View(vm);
+        }
+
+        public ActionResult Promote(string email)
+        {
+            DataLayer dal = new DataLayer();
+            Teacher teacher = (from x in dal.teachers
+                               where x.email == email
+                               select x).ToList<Teacher>()[0];
+            teacher.isPromoted = true;
+            List<Post> posts = (from x in dal.posts
+                                where x.user.email == email
+                                select x).ToList<Post>();
+            foreach (Post post in posts)
+                post.isPromoted = true;
+            dal.SaveChanges();
+            return RedirectToAction("PromoteTeacher", "Admin");
         }
     }
 }

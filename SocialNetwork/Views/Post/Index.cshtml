@@ -1,0 +1,36 @@
+﻿@model SocialNetwork.ViewModels.ViewModel
+
+@{
+    ViewBag.Title = "Posts";
+}
+<div class="row">
+    <div class="col"><h2>Posts</h2></div>
+    <div class="col text-right">
+        <a href="@Url.Action("WritePost","Post")" class="btn btn-outline-primary">Add New Post</a>
+    </div>
+</div>
+
+<hr />
+@foreach (var post in Model.posts)
+{
+<div class="card">
+    <div class="card-header alert-@post.Promoted()">
+        <h5>
+            @post.title
+            @if (post.isPromoted)
+            {
+                <span>[Promoted]</span>
+            }
+        </h5>
+
+    </div>
+    <small class="text-center">
+        <b>By:</b> @post.user.name
+        <b>At:</b> @post.date.Day / @post.date.Month  / @post.date.Year [@post.date.ToShortTimeString()]
+    </small>
+    <div class="card-body">
+        <p class="card-text">@post.body</p>
+    </div>
+</div>
+<br/>
+}
