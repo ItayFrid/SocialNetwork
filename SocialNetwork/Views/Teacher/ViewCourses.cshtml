@@ -46,6 +46,9 @@
                     <span>No Assistant</span>
                 }
             </p>
+            <p class="card-text">
+                <a href="@Url.Action("AddSyllabus", "Post", new RouteValueDictionary(new { courseId = course.id }))">Post Syllabus</a>
+            </p>
             @*<p class="card-text">*@
                 <b>Students:</b> <small> (click student's name to update progress) </small>
                 @foreach (var student in course.students)

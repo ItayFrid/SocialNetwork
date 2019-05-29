@@ -58,5 +58,26 @@ namespace SocialNetwork.Controllers
             dal.SaveChanges();
             return RedirectToAction("Index", "Post");
         }
+        [Authorize(Roles = "Teacher")]
+        public ActionResult AddSyllabus(int courseId)
+        {
+            DataLayer dal = new DataLayer();
+            Course course = (from x in dal.courses
+                             where x.id == courseId
+                             select x).ToList<Course>()[0];
+            string postBody = course.ToString();
+            Post post = new Post
+            {
+                user = course.teacher,
+                title = "Course Syllabus:" + course.name,
+                body = postBody,
+                date = DateTime.Now,
+                isPromoted = course.teacher.isPromoted,
+                isStudySource = false
+            };
+            dal.posts.Add(post);
+            dal.SaveChanges();
+            return RedirectToAction("Index","Post");
+        }
     }
 }

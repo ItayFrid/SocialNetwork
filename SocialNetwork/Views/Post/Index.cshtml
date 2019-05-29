@@ -33,7 +33,7 @@
         <b>At:</b> @post.date.Day / @post.date.Month  / @post.date.Year [@post.date.ToShortTimeString()]
     </small>
     <div class="card-body">
-        <p class="card-text">@post.body</p>
+        <p class="card-text">@Html.Raw(post.body)</p>
     </div>
 </div>
 <br/>

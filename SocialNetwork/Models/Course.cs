@@ -62,5 +62,14 @@ namespace SocialNetwork.Models
             }
             return null;
         }
+
+        public override string ToString()
+        {
+            string str ="Name:" + name + "<br>"
+                       +"Price:" + price + "<br>"
+                       + "Tags:" + tags + "<br>"
+                       + "Rating:" + avgRating + "<br>";
+            return str;
+        }
     }
 }
