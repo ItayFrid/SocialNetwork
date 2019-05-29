@@ -44,6 +44,16 @@ namespace SocialNetwork.Controllers
             }
             else
                 post.isPromoted = false;
+            if (User.IsInRole("Admin"))
+            {
+                string studySource = Request.Form["studySource"];
+                if (studySource == "True")
+                    post.isStudySource = true;
+                else
+                    post.isStudySource = false;
+            }
+            else
+                post.isStudySource = false;
             dal.posts.Add(post);
             dal.SaveChanges();
             return RedirectToAction("Index", "Post");

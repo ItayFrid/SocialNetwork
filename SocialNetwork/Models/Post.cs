@@ -25,6 +25,8 @@ namespace SocialNetwork.Models
 
         public bool isPromoted { get; set; }
 
+        public bool isStudySource { get; set; }
+
         public DateTime date { get; set; }
 
 
@@ -32,6 +34,8 @@ namespace SocialNetwork.Models
         {
             if (isPromoted)
                 return "success";
+            else if (isStudySource)
+                return "info";
             else
                 return "dark";
         }
